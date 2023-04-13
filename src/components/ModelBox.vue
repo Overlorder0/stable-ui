@@ -50,7 +50,7 @@ useIntersectionObserver(
         <div v-if="model.nsfw" :class="{ 'ribbon ribbon-top-right': model.nsfw }">
             <span class="ribbonSpan">NSFW</span>
         </div>
-        <div v-if="shouldRender || model.nsfw != true">
+        <div v-if="shouldRender && model.nsfw != true">
             <el-carousel
                 style="width: 100%; margin: 0"
                 :autoplay="false"
@@ -85,13 +85,13 @@ useIntersectionObserver(
                 </div>
                 <slot name="header"></slot>
             </div>
-            <div>There are <strong>{{model.count}}</strong> workers running this model</div>
-            <div>There are <strong>{{Math.floor((model.queued || 0) / 10_000) / 100}}</strong> MPS queued</div>
-            <div>The average model speed is <strong>{{Math.floor((model.performance || 0) / 10_000) / 100}}</strong> MPS/s</div>
-            <div>It is expected to take <strong>{{model.eta}}s</strong> to clear this queue</div>
+            <div>Сейчас <strong>{{model.count}}</strong> работников работают с этой моделью</div>
+            <div>Сейчас в очереди <strong>{{Math.floor((model.queued || 0) / 10_000) / 100}}</strong> MPS</div>
+            <div>Средняя скорость <strong>{{Math.floor((model.performance || 0) / 10_000) / 100}}</strong> MPS/s</div>
+            <div>Ожидается что понадобиться <strong>{{model.eta}}s</strong> чтобы исполнить всю очередь</div>
             <div></div>
-            <div>The style of this model is <strong>{{model.style}}</strong></div>
-            <div v-if="model.nsfw">This model may produce NSFW images.</div>
+            <div>Стиль этой модели - <strong>{{model.style}}</strong></div>
+            <div v-if="model.nsfw">Эта модель может изображать непристойности.</div>
             <el-divider v-if="model.description" style="margin: 10px 0" />
             <div class="small-font">{{model.description}}</div>
         </div>
@@ -134,6 +134,7 @@ useIntersectionObserver(
     .ribbon-top-right .ribbonSpan {
         left: -25px;
         top: 30px;
+        transform: rotate(45deg);
     }
     .ribbon {
         position: relative;
