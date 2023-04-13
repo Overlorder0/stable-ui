@@ -21,12 +21,12 @@ const emit = defineEmits<{
 
 const artifactDescriptions = [
     null,
-    "No Flaws",
-    "Hardly Recognizable",
-    "Minor",
-    "Noticeable",
-    "Major",
-    "Significant",
+    "Без огрехов",
+    "Почти не заметны",
+    "Небольшие огрехи",
+    "Заметные огрехи",
+    "Большие огрехи",
+    "Ужасно",
 ]
 
 const getDefaultRatings = () => ({
@@ -57,14 +57,14 @@ function onRatingSubmit() {
             <el-image v-loading="!showImage" @load="() => showImage = true" :src="imageSource" class="rate-image" />
         </div>
         <div>
-            <div>How would you rate this image from 1 - 10?</div>
+            <div>Как бы вы оценили эту картинку от 1 до 10?</div>
             <el-rate :max="10" v-model="currentRating.rating" />
         </div>
         <div>
-            <div>How would you describe the flaws in this image? ({{ artifactDescriptions[currentRating.artifacts || 1] }})</div>
+            <div>Как бы вы оценили недостатки этой картинки? ({{ artifactDescriptions[currentRating.artifacts || 1] }})</div>
             <el-rate :max="6" v-model="currentRating.artifacts" />
         </div>
-        <div><el-button style="height: 50px; width: 200px" @click="() => onRatingSubmit()" :disabled="submitted">Submit rating</el-button></div>
+        <div><el-button style="height: 50px; width: 200px" @click="() => onRatingSubmit()" :disabled="submitted">Отправить</el-button></div>
     </div>
 </template>
 

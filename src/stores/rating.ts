@@ -30,7 +30,7 @@ export const useRatingStore = defineStore("rating", () => {
             }
         });
         const json: DatasetImagePopResponse = await response.json();
-        if (!validateResponse(response, json, 200, "Failed to get rating", onInvalidResponse)) return;
+        if (!validateResponse(response, json, 200, "Ошибка получения рейтинга", onInvalidResponse)) return;
         submitted.value = false;
         return json;
     }
@@ -47,7 +47,7 @@ export const useRatingStore = defineStore("rating", () => {
             body: JSON.stringify(currentRating),
         });
         const json: RatePostResponse = await response.json();
-        if (!validateResponse(response, json, 201, "Failed to submit rating", onInvalidResponse)) return;
+        if (!validateResponse(response, json, 201, "Ошибка отправки", onInvalidResponse)) return;
         imagesRated.value = (imagesRated.value || 0) + 1;
         if (optionsStore.apiKey !== '0000000000' && optionsStore.apiKey !== '') kudosEarned.value = (kudosEarned.value || 0) + (json.reward || 5);
     }
@@ -66,7 +66,7 @@ export const useRatingStore = defineStore("rating", () => {
             }),
         });
         const json: GenerationSubmitted = await response.json();
-        if (!validateResponse(response, json, 200, "Failed to submit rating", onInvalidResponse)) return;
+        if (!validateResponse(response, json, 200, "Ошибка отправки", onInvalidResponse)) return;
         imagesRated.value = (imagesRated.value || 0) + 1;
         if (optionsStore.apiKey !== '0000000000' && optionsStore.apiKey !== '') kudosEarned.value = (kudosEarned.value || 0) + (json.reward || 5);
     }

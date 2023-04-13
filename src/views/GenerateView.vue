@@ -74,12 +74,12 @@ const pendingRequests = computed(() => store.queue.filter(el => el.jobId === '' 
 const rules = reactive<FormRules>({
     prompt: [{
         required: true,
-        message: 'Please input prompt',
+        message: 'Пожалуйста введите запрос',
         trigger: 'change'
     }],
     apiKey: [{
         required: true,
-        message: 'Please input API Key',
+        message: 'Пожалуйста введите API ключ',
         trigger: 'change'
     }]
 });
@@ -94,7 +94,7 @@ function updateCurrentSampler(newSamplers: string[]) {
 }
 
 function formatEST(seconds: number) {
-    return "EST: " + formatSeconds(seconds, true, { days: true, hours: true, minutes: true, seconds: true })
+    return "Осталось: " + formatSeconds(seconds, true, { days: true, hours: true, minutes: true, seconds: true })
 }
 
 function disableBadge() {
@@ -147,23 +147,23 @@ handleUrlParams();
     >
         <GeneratorMenuItem index="Text2Img"      :icon-one="Comment"           :icon-two="PictureFilled" :isMobile="isMobile" />
         <GeneratorMenuItem index="Img2Img"       :icon-one="PictureFilled"     :icon-two="PictureFilled" :isMobile="isMobile" />
-        <GeneratorMenuItem index="Inpainting"    :icon-one="BrushFilled"       :icon-two="PictureFilled" :isMobile="isMobile" />
-        <GeneratorMenuItem index="Rating"        :icon-one="StarEdit24Regular" :isMobile="isMobile" />
-        <GeneratorMenuItem index="Interrogation" :icon-one="ImageSearch"       :isMobile="isMobile" />
+        <GeneratorMenuItem index="Редактор"    :icon-one="BrushFilled"       :icon-two="PictureFilled" :isMobile="isMobile" />
+        <GeneratorMenuItem index="Оценка"        :icon-one="StarEdit24Regular" :isMobile="isMobile" />
+        <GeneratorMenuItem index="Обработчик" :icon-one="ImageSearch"       :isMobile="isMobile" />
     </el-menu>
     <div class="form">
         <div v-if="store.generatorType === 'Rating'" style="padding-bottom: 50px;">
-            <h1 style="margin: 0">Image Rating</h1>
-            <div>Rate images based on aesthetics to gain kudos and help <BaseLink href="https://laion.ai/">LAION</BaseLink> - the non-profit who helped train Stable Diffusion - improve their datasets!</div>
-            <div v-if="optionsStore.apiKey === '0000000000' || optionsStore.apiKey === ''">You have rated a total of <strong>{{ ratingStore.imagesRated }}</strong> images! <BaseLink router href="/options">Sign in</BaseLink> using your API key to start earning kudos.</div>
-            <div v-else>From rating a total of <strong>{{ ratingStore.imagesRated }}</strong> images, you have gained <strong>{{ ratingStore.kudosEarned }}</strong> kudos!</div>
+            <h1 style="margin: 0">Оценка изображений</h1>
+            <div>Оценивайте картинки на основе своих предпочтений, чтобы получать очки и помочь <BaseLink href="https://laion.ai/">LAION</BaseLink>, некоммерческой организации, помогавшей в обучении Stable Diffusion!</div>
+            <div v-if="optionsStore.apiKey === '0000000000' || optionsStore.apiKey === ''">Вы оценили <strong>{{ ratingStore.imagesRated }}</strong> картинок! <BaseLink router href="/options">Войдите</BaseLink> используя свой API ключ, чтобы получать очки.</div>
+            <div v-else>За оценку <strong>{{ ratingStore.imagesRated }}</strong> картинок вы получили <strong>{{ ratingStore.kudosEarned }}</strong> очков!</div>
             <el-button
                 @click="() => ratingStore.updateRatingInfo()"
                 v-if="!ratingStore.currentRatingInfo.id"
                 :disabled="ratingStore.submitted"
                 style="margin-top: 10px"
                 size="large"
-            >{{ ratingStore.submitted ? "Loading image..." : "Start rating!"}}</el-button>
+            >{{ ratingStore.submitted ? "Загружаю картинку..." : "Начать оценку!"}}</el-button>
             <RatingView
                 :id="ratingStore.currentRatingInfo.id || ''"
                 :image-source="ratingStore.currentRatingInfo.url || ''"
