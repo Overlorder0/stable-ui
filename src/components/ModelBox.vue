@@ -47,9 +47,6 @@ useIntersectionObserver(
 
 <template>
     <el-card class="model-box" :body-style="{ padding: '0px' }" ref="imageRef">
-        <div v-if="model.nsfw" :class="{ 'ribbon ribbon-top-right': model.nsfw }">
-            <span class="ribbonSpan">NSFW</span>
-        </div>
         <div v-if="shouldRender || model.nsfw != true">
             <el-carousel
                 style="width: 100%; margin: 0"
@@ -94,6 +91,9 @@ useIntersectionObserver(
             <div v-if="model.nsfw">This model may produce NSFW images.</div>
             <el-divider v-if="model.description" style="margin: 10px 0" />
             <div class="small-font">{{model.description}}</div>
+        </div>
+        <div v-if="model.nsfw" :class="{ 'ribbon ribbon-top-right': model.nsfw }">
+            <span class="ribbonSpan">NSFW</span>
         </div>
     </el-card>
 </template>
