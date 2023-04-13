@@ -34,7 +34,7 @@ const slots = useSlots();
         <div class="queue-status" v-if="queueStatus || slots.status">
             <slot name="status">
                 <div v-if="queueStatus">
-                    <div style="font-size: 18px">Generation Status</div>
+                    <div style="font-size: 18px">Статус</div>
                     <span v-if="pendingRequests">Pending: {{ (queueStatus.waiting ?? 0) + pendingRequests.reduce((curr, next) => curr + (next.params?.n ?? 0), 0) - (failed ?? 0) }} - </span>
                     <span>Processing: {{ queueStatus.processing }} - </span>
                     <span>Finished: {{ queueStatus.finished }} - </span>

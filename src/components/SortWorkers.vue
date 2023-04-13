@@ -26,7 +26,7 @@ const visible = ref(false);
 
 <template>
     <div class="sort-workers">
-        <el-input prop="search" v-model="store.searchFilter" placeholder="Search by name" clearable :style="`max-width: 300px; ${mobile && 'margin-bottom: 0;'}`" :suffix-icon="Search" />
+        <el-input prop="search" v-model="store.searchFilter" placeholder="Поиск по имени" clearable :style="`max-width: 300px; ${mobile && 'margin-bottom: 0;'}`" :suffix-icon="Search" />
         <el-popover
             :visible="visible"
             placement="bottom"

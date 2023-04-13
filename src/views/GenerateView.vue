@@ -316,7 +316,7 @@ handleUrlParams();
                 <el-card
                     class="center-both generated-image"
                     v-loading="store.generating && !store.generatingVideo && uiStore.progress === 0 ? {
-                        text: `Waiting for request(s) to upload${ellipsis}${'&nbsp;'.repeat(3 - ellipsis.length)}`,
+                        text: `Ожидание загрузки запроса${ellipsis}${'&nbsp;'.repeat(3 - ellipsis.length)}`,
                         background: 'rgba(0, 0, 0, 0.5)'
                     } : false"
                 >

@@ -109,21 +109,21 @@ const ratingDialog = ref(false);
 </script>
 
 <template>
-    <el-button @click="confirmDelete" type="danger" :icon="Delete" plain>Delete</el-button>
-    <el-button @click="downloadImage(imageData.image, `${imageData.seed}-${imageData.prompt}`)" type="success" :icon="Download" plain>Download</el-button>
-    <el-button v-if="!imageData.starred" @click="outputStore.toggleStarred(imageData.id)" type="warning" :icon="Star" plain>Favourite</el-button>
-    <el-button v-if="imageData.starred" @click="outputStore.toggleStarred(imageData.id)" type="warning" :icon="StarFilled" plain>Unfavourite</el-button>
+    <el-button @click="confirmDelete" type="danger" :icon="Delete" plain>Удалить</el-button>
+    <el-button @click="downloadImage(imageData.image, `${imageData.seed}-${imageData.prompt}`)" type="success" :icon="Download" plain>Скачать</el-button>
+    <el-button v-if="!imageData.starred" @click="outputStore.toggleStarred(imageData.id)" type="warning" :icon="Star" plain>В избранное</el-button>
+    <el-button v-if="imageData.starred" @click="outputStore.toggleStarred(imageData.id)" type="warning" :icon="StarFilled" plain>Убрать из избранного</el-button>
     <el-button @click="store.generateText2Img(imageData)" type="success" :icon="Refresh" plain>Text2img</el-button>
     <el-button @click="store.generateImg2Img(imageData.image)" type="success" :icon="Refresh" plain>Img2img</el-button>
     <el-button @click="store.generateInpainting(imageData.image)" type="success" :icon="Refresh" plain>Inpainting</el-button>
-    <el-button @click="copyLink(imageData)" type="success" :icon="Link" plain>Copy Link</el-button>
+    <el-button @click="copyLink(imageData)" type="success" :icon="Link" plain>Скопировать ссылку</el-button>
     <el-button
         :disabled="!imageData.hordeImageId || !imageData.jobId || imageData.rated !== 0 || !imageData.sharedExternally"
         @click="() => ratingDialog = true"
         type="warning"
         :icon="Star"
         plain
-    >Rate Image</el-button>
+    >Оценить</el-button>
     <el-dialog
         v-model="ratingDialog"
         class="rating-dialog"
