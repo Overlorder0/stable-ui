@@ -55,7 +55,7 @@ const signedIn = computed(() => optionsStore.apiKey != '0000000000' && optionsSt
     <div class="dashboard">
         <div>
             <div v-if="signedIn">
-                <div class="dashboard-title">Welcome back, {{dashStore.user.username}}</div>
+                <div class="dashboard-title">Добро пожаловать, {{dashStore.user.username}}</div>
                 <div
                     style="display: flex;  width: 100%; margin-bottom: 2rem;"
                     :style="{
@@ -63,56 +63,29 @@ const signedIn = computed(() => optionsStore.apiKey != '0000000000' && optionsSt
                         gap: breakLabels ? '8px' : '1rem',
                     }"
                 >
-                    <data-label style="width: 100%" :icon="Money"   label="Kudos"           :content="dashStore.user.kudos"                        color="var(--el-color-success)" />
-                    <data-label style="width: 100%" :icon="Picture" label="Images Requested" :content="dashStore.user.records?.request?.image"     color="var(--el-color-danger)"  />
-                    <data-label style="width: 100%" :icon="Aim"     label="Images Fulfilled" :content="dashStore.user.records?.fulfillment?.image" color="var(--el-color-primary)" />
-                    <data-label style="width: 100%" :icon="Avatar"  label="Total Workers"   :content="dashStore.user.worker_count"                 color="var(--el-color-warning)" />
+                    <data-label style="width: 100%" :icon="Money"   label="Поощрения"           :content="dashStore.user.kudos"                        color="var(--el-color-success)" />
+                    <data-label style="width: 100%" :icon="Picture" label="Изображений запрошено" :content="dashStore.user.records?.request?.image"     color="var(--el-color-danger)"  />
+                    <data-label style="width: 100%" :icon="Aim"     label="Изображений исполнено" :content="dashStore.user.records?.fulfillment?.image" color="var(--el-color-primary)" />
+                    <data-label style="width: 100%" :icon="Avatar"  label="Всего работников"   :content="dashStore.user.worker_count"                 color="var(--el-color-warning)" />
                 </div>
             </div>
             <div v-else>
-                <div class="api-key-required"><el-icon :size="30" style="margin-right: 10px"><Lock /></el-icon>User statistics requires an API key</div>
+                <div class="api-key-required"><el-icon :size="30" style="margin-right: 10px"><Lock /></el-icon>Статистика требует наличия API ключа</div>
             </div>
             <el-row :gutter="breakLabels ? 0 : 20" justify="space-around" style="margin-bottom: 2rem;">
                 <el-col :span="spanAmount" class="label">
                     <el-card style="margin-bottom: 10px;">
                         <template #header>
-                            <strong>Horde Performance</strong>
+                            <strong>Текущая производительность</strong>
                         </template>
-                        <div>There are <strong>{{dashStore.performance.queued_requests}}</strong> queued requests (<strong>{{dashStore.performance.queued_megapixelsteps}}</strong> MPS) with <strong>{{dashStore.performance.worker_count}}</strong> workers (<strong>{{dashStore.performance.thread_count}}</strong> threads).</div>
-                        <div>There are <strong>{{dashStore.performance.queued_forms}}</strong> queued interrogation requests with <strong>{{dashStore.performance.interrogator_count }}</strong> interrogation workers (<strong>{{dashStore.performance.interrogator_thread_count}}</strong> threads).</div>
-                        <div>In the past minute, there have been <strong>{{dashStore.performance.past_minute_megapixelsteps}}</strong> MPS processed.</div>
-                    </el-card>
-                    <el-card>
-                        <template #header>
-                            <strong>News</strong>
-                        </template>           
-                        <el-scrollbar>
-                            <div class="news">
-                                <div v-for="news in dashStore.news" :key="news.newspiece" style="margin-bottom: 20px">
-                                    <span>{{news.date_published}}</span>
-                                    <el-divider style="margin: 0 0" />
-                                    <div v-html="news.newspiece" />
-                                </div>
-                            </div>
-                        </el-scrollbar>
-                    </el-card>
-                </el-col>
-                <el-col :span="spanAmount" class="label" style="width: 100%">
-                    <el-card style="height: 100%">
-                        <template #header>
-                            <strong>Leaderboard</strong>
-                        </template>
-                        <el-table style="height: 100%" :data="dashStore.leaderboard" @sort-change="sortChange" :default-sort="{ prop: 'kudos', order: 'descending' }" stripe :size="breakLabelsMore ? 'small' : 'medium' " class="leaderboard">
-                            <el-table-column prop="id" label="#" />
-                            <el-table-column prop="name" label="User" width="170" />
-                            <el-table-column prop="kudos" sortable="custom" label="Kudos" />
-                            <el-table-column prop="mps" sortable="custom" label="MPS" :sort-orders="['descending', null]" />
-                        </el-table>
+                        <div>Сейчас <strong>{{dashStore.performance.queued_requests}}</strong> запросов в очереди (<strong>{{dashStore.performance.queued_megapixelsteps}}</strong> MPS) к <strong>{{dashStore.performance.worker_count}}</strong> работникам (<strong>{{dashStore.performance.thread_count}}</strong> потоков).</div>
+                        <div>Сейчас <strong>{{dashStore.performance.queued_forms}}</strong> запросов обработки к <strong>{{dashStore.performance.interrogator_count }}</strong> обработчикам (<strong>{{dashStore.performance.interrogator_thread_count}}</strong> потоков).</div>
+                        <div>За последнюю минуту было обработанно <strong>{{dashStore.performance.past_minute_megapixelsteps}}</strong> MPS.</div>
                     </el-card>
                 </el-col>
             </el-row>
             <el-card v-if="signedIn">
-                <template #header><strong>Your Workers</strong></template>
+                <template #header><strong>Ваши работники</strong></template>
                 <div class="user-workers" v-if="dashStore.userWorkers.length !== 0">
                     <WorkerEditor
                         v-for="worker in dashStore.userWorkers"
@@ -121,10 +94,10 @@ const signedIn = computed(() => optionsStore.apiKey != '0000000000' && optionsSt
                         @updated="(id) => onWorkerChange(id)"
                     />
                 </div>
-                <div v-else><el-empty description="No Workers Found" /></div>
+                <div v-else><el-empty description="Работники не найдены" /></div>
             </el-card>
             <div v-else>
-                <div class="api-key-required"><el-icon :size="30" style="margin-right: 10px"><Lock /></el-icon>Modifying/viewing user workers requires an API key</div>
+                <div class="api-key-required"><el-icon :size="30" style="margin-right: 10px"><Lock /></el-icon>Изменение и просмотр работников требует API ключ</div>
             </div>
         </div>
     </div>

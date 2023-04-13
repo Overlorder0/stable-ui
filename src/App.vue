@@ -54,7 +54,7 @@ watch(
             </el-menu-item>
             <MainMenuItem :isMobile="isMobile" index="/dashboard">
                 <template #icon><el-icon><home-filled /></el-icon></template>
-                <template #title>Обрзор</template>
+                <template #title>Обзор</template>
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/">
                 <template #icon>
@@ -63,7 +63,7 @@ watch(
                         <el-icon v-if="uiStore.showGeneratorBadge" class="generator-badge" :size="10"><circle-filled /></el-icon>
                     </div>
                 </template>
-                <template #title>Создать</template>
+                <template #title>Генератор</template>
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/images" >
                 <template #icon><el-icon><icon-menu /></el-icon></template>
