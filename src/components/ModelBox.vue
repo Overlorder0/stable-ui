@@ -47,6 +47,9 @@ useIntersectionObserver(
 
 <template>
     <el-card class="model-box" :body-style="{ padding: '0px' }" ref="imageRef">
+        <div v-if="model.nsfw" :class="{ 'ribbon ribbon-top-right': model.nsfw }">
+            <span class="ribbonSpan">NSFW</span>
+        </div>
         <div v-if="shouldRender || model.nsfw != true">
             <el-carousel
                 style="width: 100%; margin: 0"
@@ -59,12 +62,12 @@ useIntersectionObserver(
                 <el-carousel-item v-for="showcase in model.showcases" :key="showcase">
                     <el-image :src="showcase">
                         <template #placeholder>
-                            <div v-loading="true" element-loading-text="Loading..." style="height: 300px"></div>
+                            <div v-loading="true" element-loading-text="Загрузка..." style="height: 300px"></div>
                         </template>
                     </el-image>
                 </el-carousel-item>
             </el-carousel>
-            <el-empty v-else description="No showcase found!" />
+            <el-empty v-else description="Предпросмотр не найден!" />
         </div>
         <div v-else style="height: 300px"></div>
         <div style="padding: 20px">
@@ -91,9 +94,6 @@ useIntersectionObserver(
             <div v-if="model.nsfw">This model may produce NSFW images.</div>
             <el-divider v-if="model.description" style="margin: 10px 0" />
             <div class="small-font">{{model.description}}</div>
-        </div>
-        <div v-if="model.nsfw" :class="{ 'ribbon ribbon-top-right': model.nsfw }">
-            <span class="ribbonSpan">NSFW</span>
         </div>
     </el-card>
 </template>
@@ -134,7 +134,6 @@ useIntersectionObserver(
     .ribbon-top-right .ribbonSpan {
         left: -25px;
         top: 30px;
-        transform: rotate(45deg);
     }
     .ribbon {
         position: relative;
