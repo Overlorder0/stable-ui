@@ -30,18 +30,6 @@ const store = useWorkerStore();
                 <el-empty v-else description="No Workers Found" />
             </div>
         </el-tab-pane>
-        <el-tab-pane label="Teams" name="teams">
-            <sort-workers mobile v-if="isMobile" />
-            <div class="teams" v-if="store.sortedTeams.length != 0">
-                <TeamBox
-                    v-for="team in store.sortedTeams"
-                    :key="team.id"
-                    :top="store.teams.sort((a, b) => (b.requests_fulfilled as number) - (a.requests_fulfilled as number))[0] === team"
-                    :team="team"
-                />
-            </div>
-            <el-empty v-else description="No Teams Found" />
-        </el-tab-pane>
         <el-tab-pane label="Models" name="models">
             <sort-workers mobile v-if="isMobile" />
             <div class="models" v-if="store.sortedModels.length != 0">
