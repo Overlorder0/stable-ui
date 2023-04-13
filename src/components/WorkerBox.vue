@@ -56,13 +56,12 @@ const status = computed(() => {
             </div>
         </template>
         <div class="small-font">ID: {{worker.id}}</div>
-        <div>This worker has run for <strong>{{formatSeconds(worker.uptime, true, { days: true, hours: true, minutes: true })}}</strong></div>
-        <div>They have generated <strong>{{worker.megapixelsteps_generated}}</strong> MPS</div>
-        <div>They're going at a speed of <strong>{{worker.performance?.split(" ")[0]}}</strong> MPS/s</div>
-        <div>They're utilizing <strong>{{worker.threads}}</strong> thread(s)</div>
-        <div>They have fulfilled <strong>{{worker.requests_fulfilled}}</strong> requests</div>
-        <div>They have NSFW <strong>{{worker.nsfw ? "enabled" : "disabled"}}</strong></div>
-        <div>They can generate up to: <strong>{{Math.round(Math.sqrt(worker.max_pixels || 0))}}x{{ Math.round(Math.sqrt(worker.max_pixels || 0)) }}</strong></div>
+        <div>Этот работник был активен в течении <strong>{{formatSeconds(worker.uptime, true, { days: true, hours: true, minutes: true })}}</strong></div>
+        <div>Обработал <strong>{{worker.megapixelsteps_generated}}</strong> MPS</div>
+        <div>Работал на скорости <strong>{{worker.performance?.split(" ")[0]}}</strong> MPS/s</div>
+        <div>На <strong>{{worker.threads}}</strong> потоке(ах)</div>
+        <div>Исполнил <strong>{{worker.requests_fulfilled}}</strong> запросов</div>
+        <div>Может сгенерировать вплоть до: <strong>{{Math.round(Math.sqrt(worker.max_pixels || 0))}}x{{ Math.round(Math.sqrt(worker.max_pixels || 0)) }}</strong></div>
         <div>
             <el-collapse style="margin-top: 0.5rem; --el-collapse-header-height: 2.5rem">
                 <el-collapse-item :title="worker.models?.length + ' model(s)'" name="1">

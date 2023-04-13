@@ -36,7 +36,7 @@ async function updateWorkerOptions(body: ModifyWorkerInput) {
         }
     });
     const resJSON = await response.json();
-    if (!validateResponse(response, resJSON, 200, "Failed to modify worker")) return false;
+    if (!validateResponse(response, resJSON, 200, "Ошибка модификации работника :/")) return false;
     emit("updated", props.worker?.id);
     return resJSON;
 }
@@ -45,11 +45,11 @@ let deleteTimer = ref<any>(undefined);
 
 function deleteWorker() {
     ElMessageBox.confirm(
-        "This action will permanently delete this worker. Continue?",
-        'Delete Worker?',
+        "Данное действие навсегда удалит работника. Продолжить?",
+        'Удалить работника?',
         {
-            confirmButtonText: 'Delete',
-            cancelButtonText: 'Cancel',
+            confirmButtonText: 'Удалить',
+            cancelButtonText: 'Отмена',
             type: 'warning',
         }
     ).then(() => {
@@ -61,7 +61,7 @@ function deleteWorker() {
                 }
             });
             const resJSON = await response.json();
-            if (!validateResponse(response, resJSON, 200, "Failed to delete worker")) return false;
+            if (!validateResponse(response, resJSON, 200, "Ошибка удаления работника")) return false;
             workerStore.updateWorkers();
             dialogOpen.value = false;
         }, 60 * 1000)
@@ -88,7 +88,7 @@ const workerOptions = ref<ModifyWorkerInput>({
         :worker="worker"
     >
         <template #header>
-            <el-button @click="dialogOpen = true">Edit Worker</el-button>
+            <el-button @click="dialogOpen = true">Изменить</el-button>
             <el-dialog
                 v-model="dialogOpen"
                 :title="worker.name"
@@ -96,16 +96,16 @@ const workerOptions = ref<ModifyWorkerInput>({
                 align-center
             >
                 <el-form label-width="140px" :model="workerOptions" label-position="left" @submit.prevent>
-                    <el-form-item label="Change Name">
-                        <div style="font-size: 13px; word-break: keep-all;">Make sure to stop the worker first and then edit bridgeData.py!</div>
+                    <el-form-item label="Изменить имя">
+                        <div style="font-size: 13px; word-break: keep-all;">Удостоверьтесь, что работник не активен!</div>
                         <el-input
                             v-model="workerOptions.name"
-                            placeholder="Enter new name here" 
+                            placeholder="Введите здесь новое имя" 
                             style="width: 80%; min-width: 200px"
                         />
-                        <el-button @click="updateWorkerOptions({ name: workerOptions.name })">Submit</el-button>
+                        <el-button @click="updateWorkerOptions({ name: workerOptions.name })">Исполнить</el-button>
                     </el-form-item>
-                    <el-form-item label="Info">
+                    <el-form-item label="Информация">
                         <el-input
                             v-model="workerOptions.info"
                             :autosize="{ minRows: 2, maxRows: 10 }"
@@ -114,26 +114,26 @@ const workerOptions = ref<ModifyWorkerInput>({
                             type="textarea"
                             style="width: 80%; word-break:keep-all; min-width: 200px;"
                             maxlength="1000"
-                            placeholder="Enter new info here"
+                            placeholder="Введите доп. информацию о вашем работнике"
                         />
-                        <el-button @click="updateWorkerOptions({ info: workerOptions.info })">Submit</el-button>
+                        <el-button @click="updateWorkerOptions({ info: workerOptions.info })">Исполнить</el-button>
                     </el-form-item>
                     <FormSelect
-                        label="Team"
+                        label="Команда"
                         prop="team"
                         v-model="workerOptions.team"
                         :options="[
-                            {label: 'None', value: ''},
+                            {label: 'Выбрать', value: ''},
                             ...workerStore.teams.map(el => {return {label: el.name, value: el.id}})
                         ]"
                         @change="updateWorkerOptions({ team: workerOptions.team })"
                     />
-                    <el-form-item label="Maintenance Mode">
+                    <el-form-item label="Режим обслуживания">
                         <el-switch v-model="workerOptions.maintenance" @change="updateWorkerOptions({ maintenance: workerOptions.maintenance })" />
                     </el-form-item>
-                    <el-form-item label="Delete Worker">
-                        <el-button type="danger" v-if="deleteTimer == undefined" @click="deleteWorker">Remove</el-button>
-                        <el-button type="danger" v-if="deleteTimer != undefined" @click="cancelDeleteWorker">Cancel Remove (60s timer)</el-button>
+                    <el-form-item label="Удалить работника">
+                        <el-button type="danger" v-if="deleteTimer == undefined" @click="deleteWorker">Удалить</el-button>
+                        <el-button type="danger" v-if="deleteTimer != undefined" @click="cancelDeleteWorker">Отмена (60с таймер)</el-button>
                     </el-form-item>
                 </el-form>
             </el-dialog>
