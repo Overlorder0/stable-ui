@@ -249,7 +249,7 @@ handleUrlParams();
                             </el-col>
                         </el-row>
                         <div v-if="store.createVideo" style="margin: 0 0 16px 0">
-                            <h3 style="margin: 0 0 4px 0">Video</h3>
+                            <h3 style="margin: 0 0 4px 0">Настройки видео</h3>
                             <form-slider label="Начальный ФПС"  prop="videoFpsInit"  v-model="videoStore.initFramerate"  :min="videoStore.minInitFramerate"  :max="videoStore.maxInitFramerate"  :step="videoStore.initFramerateStep"  info="Сколько кадров в секунду изначально" />
                             <form-slider label="Итоговый ФПС" prop="videoFpsFinal" v-model="videoStore.finalFramerate" :min="videoStore.minFinalFramerate" :max="videoStore.maxFinalFramerate" :step="videoStore.finalFramerateStep" info="ФПС видео после интерполяции." />
                         </div>
@@ -277,7 +277,7 @@ handleUrlParams();
                                 <form-switch label="Мульти-Hi-res фикс"   prop="multiHiResFix"       v-model="store.multiSelect.hiResFix.enabled" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Мульти-контроль" prop="multiControl"      v-model="store.multiSelect.controlType.enabled" :disabled="!store.sourceGeneratorTypes.includes(store.generatorType)"  disabled-text="Требуется набросок/образец" />
+                                <form-switch label="Мульти-контроль" prop="multiControl"      v-model="store.multiSelect.controlType.enabled" :disabled="!store.sourceGeneratorTypes.includes(store.generatorType)"  disabled-text="Требуется режим Img2Img, а также образец" />
                             </el-col>
                         </el-row>
                     </el-collapse-item>

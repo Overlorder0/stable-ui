@@ -51,15 +51,15 @@ onMounted(() => {
         v-if="!store.currentImageProps.sourceImage"
     >
         <el-icon :size="100"><upload-filled /></el-icon>
-        <div>Drop file here OR <em>click to upload</em></div>
+        <div>Перетащите файл сюда ИЛИ <em>нажмите для поиска</em></div>
         <template #tip>
             <div v-if="store.generatorType === 'Img2Img'">
-                <div class="center-horizontal" style="margin-top: 5px;">OR</div>
+                <div class="center-horizontal" style="margin-top: 5px;">ИЛИ</div>
                 <div
                     class="center-both"
                     style="cursor: pointer; text-decoration: underline; font-size: 1rem"
                     @click="canvasStore.newBlankImage(store.params.height || 512, store.params.width || 512)"
-                ><el-icon :size="20" style="margin-right: 2px"><BrushFilled /></el-icon>draw something</div>
+                ><el-icon :size="20" style="margin-right: 2px"><BrushFilled /></el-icon>сделайте набросок</div>
             </div>
         </template>
     </el-upload>

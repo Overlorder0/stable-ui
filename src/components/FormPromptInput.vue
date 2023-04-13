@@ -190,8 +190,8 @@ onKeyStroke("Enter", (e) => {
                         <span>{{ tag.postCount }}</span>
                     </div>
                 </div>
-                <el-button class="small-btn" @click="() => promptLibrary = true" text>Load history</el-button>
-                <el-button class="small-btn" @click="() => selectStyle = true"   text>Load style</el-button>
+                <el-button class="small-btn" @click="() => promptLibrary = true" text>История</el-button>
+                <el-button class="small-btn" @click="() => selectStyle = true"   text>Загрузить стиль</el-button>
             </div>
         </template>
     </form-input>

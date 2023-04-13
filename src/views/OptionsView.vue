@@ -131,7 +131,7 @@ async function onTagsChange() {
                         multiple
                     >
                         <el-icon :size="100"><upload-filled /></el-icon>
-                        <div>Drop file here OR <em>click to upload</em></div>
+                        <div>Перетащите файл сюда ИЛИ <em>нажмите для поиска</em></div>
                     </el-upload>
                 </el-form-item>
             </el-tab-pane>
