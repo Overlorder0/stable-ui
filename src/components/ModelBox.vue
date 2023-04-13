@@ -46,8 +46,11 @@ useIntersectionObserver(
 </script>
 
 <template>
-    <el-card v-if="model.nsfw != true" class="model-box" :body-style="{ padding: '0px' }" ref="imageRef">
-        <div v-if="shouldRender>
+    <el-card class="model-box" :body-style="{ padding: '0px' }" ref="imageRef">
+        <div v-if="model.nsfw" :class="{ 'ribbon ribbon-top-right': model.nsfw }">
+            <span class="ribbonSpan">NSFW</span>
+        </div>
+        <div v-if="shouldRender || model.nsfw != true">
             <el-carousel
                 style="width: 100%; margin: 0"
                 :autoplay="false"
@@ -110,4 +113,56 @@ useIntersectionObserver(
     .model-box {
         min-height: 100%;
     }
+    
+    .ribbon-top-right {
+        top: -10px;
+        right: -73%;
+    }
+    .ribbon-top-right::before,
+    .ribbon-top-right::after {
+        border-top-color: transparent;
+        border-right-color: transparent;
+    }
+    .ribbon-top-right::before {
+        top: 0;
+        left: 0;
+    }
+    .ribbon-top-right::after {
+        bottom: 0;
+        right: 0;
+    }
+    .ribbon-top-right .ribbonSpan {
+        left: -25px;
+        top: 30px;
+        transform: rotate(45deg);
+    }
+    .ribbon {
+        position: relative;
+        overflow: visible;
+        z-index: 10;
+    }
+    .ribbon::before,
+    .ribbon::after {
+        position: absolute;
+        z-index: -1;
+        content: '';
+        display: block;
+        border: 5px solid #3f0000;
+    }
+    .ribbon .ribbonSpan {
+        position: absolute;
+        display: block;
+        width: 225px;
+        padding: 2px 0;
+        background-color: #c10000;
+        box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+        color: #fff;
+        text-shadow: 0 1px 1px rgb(0 0 0 / 20%);
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: bolder;
+        font-family: system-ui;
+        font-size: 30px;
+    }
+
 </style>
