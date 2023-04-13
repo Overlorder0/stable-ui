@@ -172,8 +172,8 @@ handleUrlParams();
             />
         </div>
         <div v-else-if="store.generatorType === 'Interrogation'" style="padding-bottom: 50px;">
-            <h1 style="margin: 0">Interrogation</h1>
-            <div>Interrogate images to get their predicted descriptions, tags, and NSFW status.</div>
+            <h1 style="margin: 0">Обработка</h1>
+            <div>Обработайте картинку, чтобы узнать её примерное описание и состав тегов</div>
             <InterrogationView />
         </div>
         <el-form

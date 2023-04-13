@@ -72,8 +72,8 @@ const { ellipsis } = useEllipsis();
 <template>
     <el-checkbox-group v-model="store.selectedForms" class="interrogation-form-select">
         <el-checkbox v-for="form in store.possibleForms" :key="form" :label="form">
-            <span>{{ form }}</span>
-            <span class="danger">{{ form === "interrogation" ? " (внимание, может не обработаться!)" : "" }}</span>
+            <span>{{ form === "caption" ? " (Описание. Работает всегда)" : "" }}</span>
+            <span class="danger">{{ form === "interrogation" ? " (Теги. Внимание, может не обработаться!)" : "" }}</span>
         </el-checkbox>
     </el-checkbox-group>
     <div v-if="!store.currentInterrogation.source_image" style="margin-top: 16px;">
@@ -95,13 +95,13 @@ const { ellipsis } = useEllipsis();
         </div>
     </div>
     <div v-else-if="!store.currentInterrogation.status" style="margin-top: 16px;">
-        <strong>Загрузить изображение{{ellipsis}}</strong>
+        <strong>Загрузка{{ellipsis}}</strong>
     </div>
     <div v-else>
         <div style="margin-top: 8px">
             <el-button :icon="Refresh" @click="store.resetInterrogation">Новая обработка</el-button>
-            <el-button :icon="Refresh" @click="useInterrogationCaption" :disabled="captionForm?.processing" v-if="captionForm">Text2Img (Caption)</el-button>
-            <el-button :icon="Refresh" @click="useInterrogation"  :disabled="interrogationForm?.processing" v-if="interrogationForm">Text2Img (Interrogation)</el-button>
+            <el-button :icon="Refresh" @click="useInterrogationCaption" :disabled="captionForm?.processing" v-if="captionForm">Text2Img (Описание)</el-button>
+            <el-button :icon="Refresh" @click="useInterrogation"  :disabled="interrogationForm?.processing" v-if="interrogationForm">Text2Img (Теги)</el-button>
         </div>
         <h2 style="margin: 16px 0 8px 0;">Результаты обработки</h2>
         <el-image :src="store.currentInterrogation.source_image" alt="Uploaded Image" />
