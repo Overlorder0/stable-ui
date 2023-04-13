@@ -227,33 +227,33 @@ handleUrlParams();
                         <form-select label="Типы контроля"   prop="controlTypes"    v-model="store.multiSelect.controlType.selected" :options="store.availableControlTypes"                   info="Мульти-функция активна. Утраивает стоимость и время генерации взамен на значительно лучшую композицию изображения." multiple v-if="store.sourceGeneratorTypes.includes(store.generatorType) && store.multiSelect.controlType.enabled" />
                         <form-select label="Тип контроля"      prop="controlType"     v-model="store.controlType"                      :options="store.availableControlTypes"                   info="Утраивает стоимость и время генерации взамен на значительно лучшую композицию изображения." v-if="store.sourceGeneratorTypes.includes(store.generatorType) && !store.multiSelect.controlType.enabled" />
                         <form-model-select />
-                        <form-select label="Пост-обработка"   prop="postProcess" v-model="store.postProcessors" :options="availablePostProcessors"  info="GPFGAN: Improves faces   RealESRGAN_x4plus: Upscales by 4x   CodeFormers: Improves faces  RealESRGAN_x4plus_anime_6b: Upscales by 4x, tuned for anime     strip_background: Removes the background of an image" multiple />
+                        <form-select label="Пост-обработка"   prop="postProcess" v-model="store.postProcessors" :options="availablePostProcessors"  info="GPFGAN: Улучшает лица   RealESRGAN_x4plus: Увеличивает разрешение вчетверо   CodeFormers: Улучшает лица  RealESRGAN_x4plus_anime_6b: Увеличивает разрешение вчетверо, подстроен под аниме стиль     strip_background: Удаляет фон изображения" multiple />
                         <el-row>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Hi-res фикс"       prop="hiresFix" v-model="store.params.hires_fix" info="May make high resolution images more coherent." :disabled="store.sourceGeneratorTypes.includes(store.generatorType) || store.multiSelect.hiResFix.enabled" disabled-text="Requires Text2Img" />
+                                <form-switch label="Hi-res фикс"       prop="hiresFix" v-model="store.params.hires_fix" info="Может помочь улучшить изображения, разрешением выше 800x800." :disabled="store.sourceGeneratorTypes.includes(store.generatorType) || store.multiSelect.hiResFix.enabled" disabled-text="Работает только в Text2Img" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Плиточность"           prop="tiling"   v-model="store.params.tiling"    info="Creates seamless textures! You can test your resulting images here: https://www.pycheung.com/checker/" />
+                                <form-switch label="Плиточность"           prop="tiling"   v-model="store.params.tiling"    info="Отлично может создавать различные текстуры!" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Karras"           prop="karras"   v-model="store.params.karras"    info="Improves image generation while requiring fewer steps. Mostly magic!" :disabled="store.multiSelect.karras.enabled" disabled-text="Multi karras enabled" />
+                                <form-switch label="Karras"           prop="karras"   v-model="store.params.karras"    info="Лучшее качество за меньшее время. Колдунство!" :disabled="store.multiSelect.karras.enabled" disabled-text="Мульти-karras активен" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Проверенные работники"  prop="trusted"  v-model="store.trustedOnly"      info="Whether or not to allow only trusted workers to fulfill your requests." />
+                                <form-switch label="Проверенные работники"  prop="trusted"  v-model="store.trustedOnly"      info="Выбирает только проверенных работников для вашего запроса. Исключает проблемы с генерацией." />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="X/Y Сетка"         prop="xyPlot"   v-model="store.xyPlot"           info="Generates an X/Y plot - requires no extra kudos. Note: will not be saved in the gallery." :disabled="Object.values(store.multiSelect).filter(el => el.enabled).length !== 2" disabled-text="Works only with two multi-select options" :default-value="false" />
+                                <form-switch label="X/Y Сетка"         prop="xyPlot"   v-model="store.xyPlot"           info="Создаёт X/Y сетку с картинками. Не требует затрат, не сохраняется в галлерею." :disabled="Object.values(store.multiSelect).filter(el => el.enabled).length !== 2" disabled-text="Работает только с двумя мульти-функциями" :default-value="false" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Создать Видео"     prop="video"    v-model="store.createVideo"      info="Generates an interpolated video - requires no extra kudos. Looks great when images are similar to each other! Note: will not be saved in the gallery." :disabled="store.totalImageCount < 3" disabled-text="Requires at least three frames (images)" :default-value="false" />
+                                <form-switch label="Создать Видео"     prop="video"    v-model="store.createVideo"      info="Создаёт интерполированное видео. Лучше работает при статичном сиде! Не требует затрат, не сохраняется в галлерею." :disabled="store.totalImageCount < 3" disabled-text="Требуется минимум 3 картинки!" :default-value="false" />
                             </el-col>
                         </el-row>
                         <div v-if="store.createVideo" style="margin: 0 0 16px 0">
                             <h3 style="margin: 0 0 4px 0">Video</h3>
-                            <form-slider label="Начальный ФПС"  prop="videoFpsInit"  v-model="videoStore.initFramerate"  :min="videoStore.minInitFramerate"  :max="videoStore.maxInitFramerate"  :step="videoStore.initFramerateStep"  info="How many frames (images) are displayed per second." />
-                            <form-slider label="Итоговый ФПС" prop="videoFpsFinal" v-model="videoStore.finalFramerate" :min="videoStore.minFinalFramerate" :max="videoStore.maxFinalFramerate" :step="videoStore.finalFramerateStep" info="The FPS after the video has been smoothed/interpolated." />
+                            <form-slider label="Начальный ФПС"  prop="videoFpsInit"  v-model="videoStore.initFramerate"  :min="videoStore.minInitFramerate"  :max="videoStore.maxInitFramerate"  :step="videoStore.initFramerateStep"  info="Сколько кадров в секунду изначально" />
+                            <form-slider label="Итоговый ФПС" prop="videoFpsFinal" v-model="videoStore.finalFramerate" :min="videoStore.minFinalFramerate" :max="videoStore.maxFinalFramerate" :step="videoStore.finalFramerateStep" info="ФПС видео после интерполяции." />
                         </div>
-                        <h3 style="margin: 16px 0 4px 0">Multi Select</h3>
+                        <h3 style="margin: 16px 0 4px 0">Мульти-функции</h3>
                         <el-row>
                             <el-col :span="isMobile ? 24 : 12">
                                 <form-switch label="Мульти-модель"        prop="multiModelSwitch"    v-model="store.multiSelect.model.enabled" />
