@@ -85,16 +85,16 @@ async function onTagsChange() {
 </script>
 
 <template>
-    <h1>Options</h1>
+    <h1>Настройки</h1>
     <el-form
         label-position="top"
         :model="store.options"
         @submit.prevent
     >
         <el-tabs type="border-card" style="min-height: 50vh;">
-            <el-tab-pane label="🖨️ Generation">
-                <h2>Generation Options</h2>
-                <el-form-item label="API Key" prop="apiKey">
+            <el-tab-pane label="🖨️ Генерация">
+                <h2>Настройки генерации</h2>
+                <el-form-item label="API ключ (регистрация - https://stablehorde.net/register)" prop="apiKey">
                     <el-input
                         v-model="store.apiKey"
                         type="password"
@@ -105,22 +105,22 @@ async function onTagsChange() {
                     />
                     <el-button class="anon" @click="store.useAnon()">Anon?</el-button>
                 </el-form-item>
-                <form-select label="Tag Autocomplete" prop="tagAutocomplete" v-model="tagStore.currentTagsType" :options="tagStore.possibleTags" @change="onTagsChange" v-loading="tagStore.tagsLoading" info="Use the up and down arrow keys to scroll through tag options then press 'Enter' to insert it into the prompt." />
-                <form-select label="Use Specific Worker" prop="worker" v-model="store.useWorker" :options="['None', ...workerStore.workers.map(el => {return {label: `${el.name} (${el.performance?.split(' ')[0]} MPS/s, ${Math.floor(Math.sqrt(el.max_pixels || 0))}x${Math.floor(Math.sqrt(el.max_pixels || 0))})`, value: el.id}}).sort((a,b) => (a.label || '').localeCompare(b.label || ''))]" filterable />
-                <form-radio  label="Larger Values" prop="allowLargerParams" v-model="store.allowLargerParams" :options="['Enabled', 'Disabled']" info="Allows use of larger step values and dimension sizes if you have the kudos on hand." :disabled="store.apiKey === '0000000000' || store.apiKey === ''" />
-                <form-radio  label="Share Generated Images with LAION" prop="shareWithLaion" v-model="store.shareWithLaion" :options="['Enabled', 'Disabled']" info="Automatically and anonymously share images with LAION (the non-profit that created the dataset that was used to train Stable Diffusion) for use in aesthetic training in order to improve future models. See the announcement at https://discord.com/channels/781145214752129095/1020707945694101564/1061980573096226826 for more information. NOTE: This option is automatically enabled for users without a valid API key. " :disabled="store.apiKey === '0000000000' || store.apiKey === ''" />
+                <form-select label="Автодополнение тегов" prop="tagAutocomplete" v-model="tagStore.currentTagsType" :options="tagStore.possibleTags" @change="onTagsChange" v-loading="tagStore.tagsLoading" info="Начните вводить тег, ориентируйтесь стрелками вверх-вниз и выберите подходящий тег из списка клавишей Ввод" />
+                <form-select label="Использовать одного работника" prop="worker" v-model="store.useWorker" :options="['Выбрать', ...workerStore.workers.map(el => {return {label: `${el.name} (${el.performance?.split(' ')[0]} MPS/s, ${Math.floor(Math.sqrt(el.max_pixels || 0))}x${Math.floor(Math.sqrt(el.max_pixels || 0))})`, value: el.id}}).sort((a,b) => (a.label || '').localeCompare(b.label || ''))]" filterable />
+                <form-radio  label="Большие значения" prop="allowLargerParams" v-model="store.allowLargerParams" :options="['Вкл', 'Выкл']" info="У каджита есть товар, если у тебя есть монеты друг. (открывает большие разрешения и число шагов при наличии большого числа очков)" :disabled="store.apiKey === '0000000000' || store.apiKey === ''" />
+                <form-radio  label="Делиться изображениями с LAION" prop="shareWithLaion" v-model="store.shareWithLaion" :options="['Вкл', 'Выкл']" info="Автоматически и анонимно отправляет создаваемые изображения в некоммерческий фонд LAION для дополнения их датасетов, на которых и обучаются модели вроде Stable Diffusion. ЗАМЕТКА: эта опция включена по умолчанию для анонимных пользователей." :disabled="store.apiKey === '0000000000' || store.apiKey === ''" />
             </el-tab-pane>
-            <el-tab-pane label="📷 Images">
-                <h2>Image Options</h2>
-                <form-slider label="Images Per Page" prop="pageSize" v-model="store.pageSize" :min="10" :max="50" :step="5" :disabled="store.pageless === 'Enabled'" />
-                <form-radio  label="Pageless Format" prop="pageless" v-model="store.pageless" :options="['Enabled', 'Disabled']" />
-                <form-radio  label="Carousel Auto Cycle" prop="autoCarousel" v-model="store.autoCarousel" :options="['Enabled', 'Disabled']" />
-                <form-radio  label="Image Download Format" prop="downloadType" v-model="store.imageDownloadType" :options="['WEBP', 'PNG', 'JPG']" />
-                <el-form-item label="Export Images (ZIP File)">
-                    <el-button :icon="Download" @click="bulkDownload()" v-if="!downloading">Download {{outputsStore.outputsLength}} image(s)</el-button>
-                    <el-button :icon="Download" disabled v-else>Downloading... ({{downloaded}} / {{outputsStore.outputsLength}} image(s))</el-button>
+            <el-tab-pane label="📷 Галерея">
+                <h2>Настройки галереи</h2>
+                <form-slider label="Картинок на странице" prop="pageSize" v-model="store.pageSize" :min="10" :max="50" :step="5" :disabled="store.pageless === 'Enabled'" />
+                <form-radio  label="Бесстраничный формат" prop="pageless" v-model="store.pageless" :options="['Вкл', 'Выкл']" />
+                <form-radio  label="Автопрокрутка" prop="autoCarousel" v-model="store.autoCarousel" :options="['Вкл', 'Выкл']" />
+                <form-radio  label="Формат скачиваемых изображений" prop="downloadType" v-model="store.imageDownloadType" :options="['WEBP', 'PNG', 'JPG']" />
+                <el-form-item label="Экспорт галереи (ZIP архив)">
+                    <el-button :icon="Download" @click="bulkDownload()" v-if="!downloading">Скачать {{outputsStore.outputsLength}} картин(ок)</el-button>
+                    <el-button :icon="Download" disabled v-else>Загрузка... ({{downloaded}} / {{outputsStore.outputsLength}} картин(ок))</el-button>
                 </el-form-item>
-                <el-form-item label="Import Images (ZIP File)">
+                <el-form-item label="Импорт галереи (ZIP архив)">
                     <el-upload
                         drag
                         ref="upload"
@@ -135,17 +135,9 @@ async function onTagsChange() {
                     </el-upload>
                 </el-form-item>
             </el-tab-pane>
-            <el-tab-pane label="⚙️ General">
-                <h2>General Options</h2>
-                <form-select label="Color Scheme" prop="colorScheme" v-model="store.options.colorMode" :options="options" />
-            </el-tab-pane>
-            <el-tab-pane disabled>
-                <template #label>
-                    <el-tooltip content="No running experiments!">🧪 Experimental</el-tooltip>
-                </template>
-                <h2>Experimental Options</h2>
-                <!--<form-radio label="Beta Testing" prop="betaTesting" v-model="store.useBeta" :options="['Enabled', 'Disabled']" info="Enables the beta channel for Stable Horde testing. WARNING: This beta channel is bleeding edge and may not function as intended. If you don't know what this is, leave this disabled." />-->
-                <!--<form-radio label="Utilize Cloudflare" prop="useCloudflare" v-model="store.useCloudflare" :options="['Enabled', 'Disabled']" info="An experimental feature to retrieve potentially lossless images from the Horde by using Cloudflare. Note: not all workers support this feature at the moment - generation times may be slower." />-->
+            <el-tab-pane label="⚙️ Общее">
+                <h2>Общие настройки</h2>
+                <form-select label="Цветовая палитра" prop="colorScheme" v-model="store.options.colorMode" :options="options" />
             </el-tab-pane>
         </el-tabs>
     </el-form>

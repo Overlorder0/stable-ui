@@ -242,10 +242,10 @@ handleUrlParams();
                                 <form-switch label="Проверенные работники"  prop="trusted"  v-model="store.trustedOnly"      info="Выбирает только проверенных работников для вашего запроса. Исключает проблемы с генерацией." />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="X/Y Сетка"         prop="xyPlot"   v-model="store.xyPlot"           info="Создаёт X/Y сетку с картинками. Не требует затрат, не сохраняется в галлерею." :disabled="Object.values(store.multiSelect).filter(el => el.enabled).length !== 2" disabled-text="Работает только с двумя мульти-функциями" :default-value="false" />
+                                <form-switch label="X/Y Сетка"         prop="xyPlot"   v-model="store.xyPlot"           info="Создаёт X/Y сетку с картинками. Не требует затрат, не сохраняется в галерею." :disabled="Object.values(store.multiSelect).filter(el => el.enabled).length !== 2" disabled-text="Работает только с двумя мульти-функциями" :default-value="false" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Создать Видео"     prop="video"    v-model="store.createVideo"      info="Создаёт интерполированное видео. Лучше работает при статичном сиде! Не требует затрат, не сохраняется в галлерею." :disabled="store.totalImageCount < 3" disabled-text="Требуется минимум 3 картинки!" :default-value="false" />
+                                <form-switch label="Создать Видео"     prop="video"    v-model="store.createVideo"      info="Создаёт интерполированное видео. Лучше работает при статичном сиде! Не требует затрат, не сохраняется в галерею." :disabled="store.totalImageCount < 3" disabled-text="Требуется минимум 3 картинки!" :default-value="false" />
                             </el-col>
                         </el-row>
                         <div v-if="store.createVideo" style="margin: 0 0 16px 0">

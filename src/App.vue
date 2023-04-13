@@ -67,7 +67,7 @@ watch(
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/images" >
                 <template #icon><el-icon><icon-menu /></el-icon></template>
-                <template #title>Галлерея</template>
+                <template #title>Галерея</template>
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/workers">
                 <template #icon><el-icon><user /></el-icon></template>
