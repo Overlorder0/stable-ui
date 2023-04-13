@@ -49,8 +49,8 @@ function useInterrogation() {
     } as any);
 }
 
-const captionForm = computed(() => store.getFormStatus('caption'));
-const interrogationForm = computed(() => store.getFormStatus('interrogation'));
+const captionForm = computed(() => store.getFormStatus('описание'));
+const interrogationForm = computed(() => store.getFormStatus('теги'));
 
 const showWarning = computed(() =>
     !store.currentInterrogation?.status?.forms?.every(el => el.state === 'done') &&
@@ -77,7 +77,7 @@ const { ellipsis } = useEllipsis();
         </el-checkbox>
     </el-checkbox-group>
     <div v-if="!store.currentInterrogation.source_image" style="margin-top: 16px;">
-        <strong v-if="!store.selectedForms.length" class="danger">Choose an interrogation option to proceed!</strong>
+        <strong v-if="!store.selectedForms.length" class="danger">Сначала выберите опции обработки!</strong>
         <div :style="store.selectedForms.length ? '' : { pointerEvents: 'none', opacity: 0.5 }">
             <el-upload
                 @change="handleChange"
@@ -90,31 +90,31 @@ const { ellipsis } = useEllipsis();
                 drag
             >
                 <el-icon :size="100"><upload-filled /></el-icon>
-                <div>Drop file here OR <em>click to upload</em></div>
+                <div>Перетащите сюда ИЛИ <em>нажмите для поиска</em></div>
             </el-upload>
         </div>
     </div>
     <div v-else-if="!store.currentInterrogation.status" style="margin-top: 16px;">
-        <strong>Uploading image{{ellipsis}}</strong>
+        <strong>Загрузить изображение{{ellipsis}}</strong>
     </div>
     <div v-else>
         <div style="margin-top: 8px">
-            <el-button :icon="Refresh" @click="store.resetInterrogation">New Interrogation</el-button>
+            <el-button :icon="Refresh" @click="store.resetInterrogation">Новая обработка</el-button>
             <el-button :icon="Refresh" @click="useInterrogationCaption" :disabled="captionForm?.processing" v-if="captionForm">Text2Img (Caption)</el-button>
             <el-button :icon="Refresh" @click="useInterrogation"  :disabled="interrogationForm?.processing" v-if="interrogationForm">Text2Img (Interrogation)</el-button>
         </div>
-        <h2 style="margin: 16px 0 8px 0;">Interrogation Results</h2>
+        <h2 style="margin: 16px 0 8px 0;">Результаты обработки</h2>
         <el-image :src="store.currentInterrogation.source_image" alt="Uploaded Image" />
         <div class="danger" v-if="showWarning">
-            <strong>Interrogation is taking longer than expected and may not fulfill.</strong>
+            <strong>Обработка занимает дольше положенного и может не выполниться</strong>
         </div>
         <div v-if="captionForm">
-            <h3>Caption</h3>
+            <h3>Описание</h3>
             <div v-if="captionForm.processing">Processing{{ellipsis}}</div>
             <div v-else><strong>{{ captionForm?.result?.caption }}</strong></div>
         </div>
         <div v-if="interrogationForm">
-            <h3>Interrogation</h3>
+            <h3>Теги</h3>
             <div v-if="interrogationForm.processing">Processing{{ellipsis}}</div>
             <div v-else>
                 <div style="margin-bottom: 8px;">As a prompt: "{{ interrogationAsPrompt }}"</div>
