@@ -35,14 +35,6 @@ const status = computed(() => {
 
 const imageRef = ref(null);
 const shouldRender = ref(false);
-useIntersectionObserver(
-    imageRef,
-    ([{ isIntersecting }]) => {
-        shouldRender.value = isIntersecting;
-    }, {
-        rootMargin: '500px',
-    }
-);
 </script>
 
 <template>
