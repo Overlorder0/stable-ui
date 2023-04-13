@@ -117,7 +117,7 @@ export const useGeneratorStore = defineStore("generator", () => {
     const negativePrompt = ref("");
     const negativePromptLibrary = useLocalStorage<string[]>("negativeLibrary", []);
     const params = ref<ModelGenerationInputStable>(getDefaultStore());
-    const nsfw   = ref(false);
+    const nsfw   = ref(true);
     const trustedOnly = ref(false);
     const xyPlot = ref(false);
     const createVideo = ref(false);

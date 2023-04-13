@@ -20,7 +20,7 @@ import { computed, ref } from 'vue';
 import type { IModelData } from '@/stores/generator';
 import { useIntersectionObserver } from '@vueuse/core';
 const props = defineProps<{
-    model: IModelData;
+        model: IModelData;
 }>();
 
 const status = computed(() => {

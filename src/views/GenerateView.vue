@@ -361,13 +361,13 @@ handleUrlParams();
     </div>
     <DialogList
         v-model="negativePromptLibrary"
-        title="Negative Prompts"
+        title="Отрицательные запросы"
         :list="store.negativePromptLibrary"
-        empty-description="No negative prompts found"
-        search-empty-description="Found no matching negative prompt(s) from your search."
-        search-text="Search by prompt"
-        deleteText="Delete preset"
-        useText="Use preset"
+        empty-description="Отрицательные запросы не найдены"
+        search-empty-description="Подходящие запросы не найдены"
+        search-text="Поиск по запросу"
+        deleteText="Удалить шаблон"
+        useText="Использовать шаблон"
         @use="negPrompt => store.negativePrompt = negPrompt"
         @delete="() => store.removeFromNegativeLibrary"
     />
