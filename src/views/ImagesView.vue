@@ -138,11 +138,11 @@ const splitList = computed(() => {
                     :key="option"
                     @click="() => store.filterBy = (option as any)"
                     :class="`el-select-dropdown__item ${store.filterBy === option ? 'selected' : ''}`"
-                >{{store.filterBy === option ? "Showing" : "Show"}} {{option}}</div>
+                >{{store.filterBy === option ? "Показаны" : "Показать"}} {{option}}</div>
             </el-popover>
             <el-popover
                 placement="bottom"
-                title="Image Layout"
+                title="Формат сетки"
                 trigger="click"
                 :width="240"
                 transition="none"
@@ -153,10 +153,10 @@ const splitList = computed(() => {
                 </template>
                 <div
                     v-for="option in [{
-                        label: 'Square Grid',
+                        label: 'Квадратная сетка',
                         value: 'grid'
                     }, {
-                        label: 'Dynamic Layout',
+                        label: 'Динамическая сетка',
                         value: 'dynamic'
                     }]"
                     :key="option.value"
@@ -166,7 +166,7 @@ const splitList = computed(() => {
             </el-popover>
             <el-popover
                 placement="bottom"
-                title="Selection"
+                title="Выбор"
                 trigger="click"
                 :width="240"
                 transition="none"
@@ -175,12 +175,12 @@ const splitList = computed(() => {
                 <template #reference>
                     <el-button class="btn-select"><el-icon :size="16"><CircleCheckFilled v-if="uiStore.multiSelect" /><CircleCheck v-else /></el-icon></el-button>
                 </template>
-                <div class="el-select-dropdown__item selected" @click="uiStore.toggleMultiSelect" v-if="uiStore.multiSelect">Disable multi-select</div>
-                <div class="el-select-dropdown__item"          @click="uiStore.toggleMultiSelect" v-else>Enable multi-select</div>
-                <div class="el-select-dropdown__item selected" @click="deselectAll"  v-if="uiStore.selected.length > 0">Deselect All</div>
-                <div class="el-select-dropdown__item"          @click="selectAll"    v-else>Select All</div>
-                <div class="el-select-dropdown__item selected" @click="deselectPage" v-if="!uiStore.selected.every(el => !store.currentOutputs.map(el => el.id).includes(el))">Deselect Page</div>
-                <div class="el-select-dropdown__item"          @click="selectPage"   v-else>Select Page</div>
+                <div class="el-select-dropdown__item selected" @click="uiStore.toggleMultiSelect" v-if="uiStore.multiSelect">Отключить мульти-выбор</div>
+                <div class="el-select-dropdown__item"          @click="uiStore.toggleMultiSelect" v-else>Включить мульти-выбор</div>
+                <div class="el-select-dropdown__item selected" @click="deselectAll"  v-if="uiStore.selected.length > 0">Отменить все</div>
+                <div class="el-select-dropdown__item"          @click="selectAll"    v-else>Выбрать все</div>
+                <div class="el-select-dropdown__item selected" @click="deselectPage" v-if="!uiStore.selected.every(el => !store.currentOutputs.map(el => el.id).includes(el))">Отменить страницу</div>
+                <div class="el-select-dropdown__item"          @click="selectPage"   v-else>Выбрать страницу</div>
             </el-popover>
         </div>
         <el-pagination
@@ -198,7 +198,7 @@ const splitList = computed(() => {
             <el-button type="success" @click="bulkDownload" :icon="Download" plain style="margin: 0">Download</el-button>
         </div>
         <div v-else>
-            <em style="font-size: 14px;">(long press to select multiple images)</em>
+            <em style="font-size: 14px;">(долгое нажатие активирует мульти-выбор)</em>
         </div>
     </div>
     <div v-if="store.outputsLength != 0">
@@ -222,7 +222,7 @@ const splitList = computed(() => {
         </div>
     </div>
     <div v-if="store.outputsLength == 0">
-        <el-empty description="No Images Found" />
+        <el-empty description="Изображения не найдены" />
     </div>
 </template>
 
