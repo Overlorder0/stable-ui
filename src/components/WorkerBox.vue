@@ -64,7 +64,7 @@ const status = computed(() => {
         <div>Может сгенерировать вплоть до: <strong>{{Math.round(Math.sqrt(worker.max_pixels || 0))}}x{{ Math.round(Math.sqrt(worker.max_pixels || 0)) }}</strong></div>
         <div>
             <el-collapse style="margin-top: 0.5rem; --el-collapse-header-height: 2.5rem">
-                <el-collapse-item :title="worker.models?.length + ' Модель(и)'" name="1">
+                <el-collapse-item :title="worker.models?.length + ' Моделей'" name="1">
                     <strong>{{worker.models?.length === 0 ? "stable_diffusion" : ""}}</strong>
                     <strong v-for="(model, index) of worker.models" :key="index">
                         {{model}}{{index === worker.models?.length ? "" : ", "}}
