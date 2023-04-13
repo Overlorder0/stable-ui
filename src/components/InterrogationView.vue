@@ -29,7 +29,7 @@ const upload = ref();
 async function handleChange(uploadFile: UploadFile) {
     upload.value!.clearFiles();
     if (!(uploadFile.raw as UploadRawFile).type.includes("image")) {
-        uiStore.raiseError("Uploaded file needs to be a image!", false);
+        uiStore.raiseError("Загружаемый файл должен быть картинкой!", false);
         return;
     }
     const base64File = await convertToBase64(uploadFile.raw as UploadRawFile) as string;
@@ -49,7 +49,6 @@ function useInterrogation() {
     } as any);
 }
 
-const nsfwForm = computed(() => store.getFormStatus('nsfw'));
 const captionForm = computed(() => store.getFormStatus('caption'));
 const interrogationForm = computed(() => store.getFormStatus('interrogation'));
 
@@ -74,7 +73,7 @@ const { ellipsis } = useEllipsis();
     <el-checkbox-group v-model="store.selectedForms" class="interrogation-form-select">
         <el-checkbox v-for="form in store.possibleForms" :key="form" :label="form">
             <span>{{ form }}</span>
-            <span class="danger">{{ form === "interrogation" ? " (warning: may not fulfill)" : "" }}</span>
+            <span class="danger">{{ form === "interrogation" ? " (внимание, может не обработаться!)" : "" }}</span>
         </el-checkbox>
     </el-checkbox-group>
     <div v-if="!store.currentInterrogation.source_image" style="margin-top: 16px;">
@@ -108,11 +107,6 @@ const { ellipsis } = useEllipsis();
         <el-image :src="store.currentInterrogation.source_image" alt="Uploaded Image" />
         <div class="danger" v-if="showWarning">
             <strong>Interrogation is taking longer than expected and may not fulfill.</strong>
-        </div>
-        <div v-if="nsfwForm">
-            <h3>NSFW</h3>
-            <div v-if="nsfwForm.processing">Processing{{ellipsis}}</div>
-            <div v-else>This image is predicted to be <strong>{{ nsfwForm?.result?.nsfw ? "not safe for work" : "safe for work" }}</strong>.</div>
         </div>
         <div v-if="captionForm">
             <h3>Caption</h3>
