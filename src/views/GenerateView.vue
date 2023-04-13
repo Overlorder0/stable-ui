@@ -212,19 +212,19 @@ handleUrlParams();
                                 </el-tooltip>
                             </template>
                         </form-input>
-                        <form-select label="Сэмплеры"        prop="samplers"        v-model="store.multiSelect.sampler.selected"     :options="availableSamplers"  info="Multi-select enabled. k_heun and k_dpm_2 double generation time and kudos cost, but converge twice as fast." multiple v-if="store.multiSelect.sampler.enabled" />
-                        <form-select label="Сэмплер"           prop="sampler"         v-model="store.params.sampler_name"              :options="availableSamplers"  info="k_heun and k_dpm_2 double generation time and kudos cost, but converge twice as fast." v-else />
+                        <form-select label="Сэмплеры"        prop="samplers"        v-model="store.multiSelect.sampler.selected"     :options="availableSamplers"  info="Мульти-функция активна. k_heun и k_dpm_2 вдвое дороже и медленнее, но также вдвое лучше." multiple v-if="store.multiSelect.sampler.enabled" />
+                        <form-select label="Сэмплер"           prop="sampler"         v-model="store.params.sampler_name"              :options="availableSamplers"  info="k_heun и k_dpm_2 вдвое дороже и медленнее, но также вдвое лучше." v-else />
                         <form-slider label="Размер пачки"        prop="batchSize"       v-model="store.params.n"                         :min="store.minImages"        :max="store.maxImages" />
-                        <form-slider label="Числа шагов"          prop="multiSteps"      v-model="store.multiSelect.steps.selected"       :min="store.minSteps"         :max="store.maxSteps"      info="Multi-select enabled. Keep step count between 30 to 50 for optimal generation times. Coherence typically peaks between 60 and 90 steps, with a trade-off in speed." multiple v-if="store.multiSelect.steps.enabled" />
-                        <form-slider label="Число шагов"             prop="steps"           v-model="store.params.steps"                     :min="store.minSteps"         :max="store.maxSteps"      info="Keep step count between 30 to 50 for optimal generation times. Coherence typically peaks between 60 and 90 steps, with a trade-off in speed." v-else />
+                        <form-slider label="Числа шагов"          prop="multiSteps"      v-model="store.multiSelect.steps.selected"       :min="store.minSteps"         :max="store.maxSteps"      info="Мульти-функция активна. Придерживайтесь от 30 до 50 для оптимального времени генерации. Качество обычно достигает пика от 60 до 90 шагов." multiple v-if="store.multiSelect.steps.enabled" />
+                        <form-slider label="Число шагов"             prop="steps"           v-model="store.params.steps"                     :min="store.minSteps"         :max="store.maxSteps"      info="Придерживайтесь от 30 до 50 для оптимального времени генерации. Качество обычно достигает пика от 60 до 90 шагов." v-else />
                         <form-slider label="Ширина"             prop="width"           v-model="store.params.width"                     :min="store.minDimensions"    :max="store.maxDimensions" :step="64"   :change="onDimensionsChange" />
                         <form-slider label="Высота"            prop="height"          v-model="store.params.height"                    :min="store.minDimensions"    :max="store.maxDimensions" :step="64"   :change="onDimensionsChange" />
-                        <form-slider label="Следования"       prop="cfgScales"       v-model="store.multiSelect.guidance.selected"    :min="store.minCfgScale"      :max="store.maxCfgScale"   info="Multi-select enabled. Higher values will make the AI respect your prompt more. Lower values allow the AI to be more creative." multiple v-if="store.multiSelect.guidance.enabled" />
+                        <form-slider label="Следования"       prop="cfgScales"       v-model="store.multiSelect.guidance.selected"    :min="store.minCfgScale"      :max="store.maxCfgScale"   info="Мульти-функция активна. Higher values will make the AI respect your prompt more. Lower values allow the AI to be more creative." multiple v-if="store.multiSelect.guidance.enabled" />
                         <form-slider label="Следование"          prop="cfgScale"        v-model="store.params.cfg_scale"                 :min="store.minCfgScale"      :max="store.maxCfgScale"   :step="0.5"  info="Higher values will make the AI respect your prompt more. Lower values allow the AI to be more creative." v-else />
-                        <form-slider label="CLIP Пропуски"      prop="clipSkips"       v-model="store.multiSelect.clipSkip.selected"    :min="store.minClipSkip"      :max="store.maxClipSkip"   info="Multi-select enabled. Last layers of CLIP to ignore. For most situations this can be left alone. This may produce better results - for example, Anything Diffusion and CLIP skip 2 pairs well." multiple v-if="store.multiSelect.clipSkip.enabled" />
+                        <form-slider label="CLIP Пропуски"      prop="clipSkips"       v-model="store.multiSelect.clipSkip.selected"    :min="store.minClipSkip"      :max="store.maxClipSkip"   info="Мульти-функция активна. Last layers of CLIP to ignore. For most situations this can be left alone. This may produce better results - for example, Anything Diffusion and CLIP skip 2 pairs well." multiple v-if="store.multiSelect.clipSkip.enabled" />
                         <form-slider label="CLIP Пропуск"         prop="clipSkip"        v-model="store.params.clip_skip"                 :min="store.minClipSkip"      :max="store.maxClipSkip"   info="Last layers of CLIP to ignore. For most situations this can be left alone. This may produce better results - for example, Anything Diffusion and CLIP skip 2 pairs well." v-else />
                         <form-slider label="Вес образца"     prop="denoise"         v-model="store.params.denoising_strength"        :min="store.minDenoise"       :max="store.maxDenoise"    :step="0.01" info="The final image will diverge from the starting image at higher values." v-if="store.sourceGeneratorTypes.includes(store.generatorType)" />
-                        <form-select label="Типы контроля"   prop="controlTypes"    v-model="store.multiSelect.controlType.selected" :options="store.availableControlTypes"                   info="Multi-select enabled. Greatly helps to keep image composition, but causes generations to be 3x slower and cost 3x as much kudos." multiple v-if="store.sourceGeneratorTypes.includes(store.generatorType) && store.multiSelect.controlType.enabled" />
+                        <form-select label="Типы контроля"   prop="controlTypes"    v-model="store.multiSelect.controlType.selected" :options="store.availableControlTypes"                   info="Мульти-функция активна. Greatly helps to keep image composition, but causes generations to be 3x slower and cost 3x as much kudos." multiple v-if="store.sourceGeneratorTypes.includes(store.generatorType) && store.multiSelect.controlType.enabled" />
                         <form-select label="Тип контроля"      prop="controlType"     v-model="store.controlType"                      :options="store.availableControlTypes"                   info="Greatly helps to keep image composition, but causes generations to be 3x slower and cost 3x as much kudos." v-if="store.sourceGeneratorTypes.includes(store.generatorType) && !store.multiSelect.controlType.enabled" />
                         <form-model-select />
                         <form-select label="Пост-обработка"   prop="postProcess" v-model="store.postProcessors" :options="availablePostProcessors"  info="GPFGAN: Improves faces   RealESRGAN_x4plus: Upscales by 4x   CodeFormers: Improves faces  RealESRGAN_x4plus_anime_6b: Upscales by 4x, tuned for anime     strip_background: Removes the background of an image" multiple />
@@ -250,34 +250,34 @@ handleUrlParams();
                         </el-row>
                         <div v-if="store.createVideo" style="margin: 0 0 16px 0">
                             <h3 style="margin: 0 0 4px 0">Video</h3>
-                            <form-slider label="Init FPS"  prop="videoFpsInit"  v-model="videoStore.initFramerate"  :min="videoStore.minInitFramerate"  :max="videoStore.maxInitFramerate"  :step="videoStore.initFramerateStep"  info="How many frames (images) are displayed per second." />
-                            <form-slider label="Final FPS" prop="videoFpsFinal" v-model="videoStore.finalFramerate" :min="videoStore.minFinalFramerate" :max="videoStore.maxFinalFramerate" :step="videoStore.finalFramerateStep" info="The FPS after the video has been smoothed/interpolated." />
+                            <form-slider label="Начальный ФПС"  prop="videoFpsInit"  v-model="videoStore.initFramerate"  :min="videoStore.minInitFramerate"  :max="videoStore.maxInitFramerate"  :step="videoStore.initFramerateStep"  info="How many frames (images) are displayed per second." />
+                            <form-slider label="Итоговый ФПС" prop="videoFpsFinal" v-model="videoStore.finalFramerate" :min="videoStore.minFinalFramerate" :max="videoStore.maxFinalFramerate" :step="videoStore.finalFramerateStep" info="The FPS after the video has been smoothed/interpolated." />
                         </div>
                         <h3 style="margin: 16px 0 4px 0">Multi Select</h3>
                         <el-row>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Multi Model"        prop="multiModelSwitch"    v-model="store.multiSelect.model.enabled" />
+                                <form-switch label="Мульти-модель"        prop="multiModelSwitch"    v-model="store.multiSelect.model.enabled" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Multi Sampler"      prop="multiSamplerSwitch"  v-model="store.multiSelect.sampler.enabled" info="Note: Stable Diffusion 2.0 forces the 'dpmsolver' sampler." />
+                                <form-switch label="Мульти-сэмплер"      prop="multiSamplerSwitch"  v-model="store.multiSelect.sampler.enabled" info="Note: Stable Diffusion 2.0 forces the 'dpmsolver' sampler." />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Multi Guidance"     prop="multiGuidanceSwitch" v-model="store.multiSelect.guidance.enabled" />
+                                <form-switch label="Мульти-следование"     prop="multiGuidanceSwitch" v-model="store.multiSelect.guidance.enabled" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Multi CLIP Skip"    prop="multiClipSkipSwitch" v-model="store.multiSelect.clipSkip.enabled" />
+                                <form-switch label="Мульти-CLIP пропуск"    prop="multiClipSkipSwitch" v-model="store.multiSelect.clipSkip.enabled" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Multi Steps"        prop="multiStepsSwitch"    v-model="store.multiSelect.steps.enabled" />
+                                <form-switch label="Мульти-шаг"        prop="multiStepsSwitch"    v-model="store.multiSelect.steps.enabled" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Multi Karras"       prop="multiKarras"         v-model="store.multiSelect.karras.enabled" />
+                                <form-switch label="Мульти-Karras"       prop="multiKarras"         v-model="store.multiSelect.karras.enabled" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Multi Hi-res Fix"   prop="multiHiResFix"       v-model="store.multiSelect.hiResFix.enabled" />
+                                <form-switch label="Мульти-Hi-res фикс"   prop="multiHiResFix"       v-model="store.multiSelect.hiResFix.enabled" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Multi Control Type" prop="multiControl"      v-model="store.multiSelect.controlType.enabled" :disabled="!store.sourceGeneratorTypes.includes(store.generatorType)"  disabled-text="Requires a drawing/uploaded image" />
+                                <form-switch label="Мульти-контроль" prop="multiControl"      v-model="store.multiSelect.controlType.enabled" :disabled="!store.sourceGeneratorTypes.includes(store.generatorType)"  disabled-text="Requires a drawing/uploaded image" />
                             </el-col>
                         </el-row>
                     </el-collapse-item>
