@@ -149,14 +149,14 @@ onKeyStroke("Enter", (e) => {
         :autosize="{ minRows: 2, maxRows: 15 }"
         resize="vertical"
         type="textarea"
-        placeholder="Enter prompt here"
+        placeholder="Введите запрос"
         label-position="top"
         label-style="justify-content: space-between; width: 100%;"
         @focus="promptFocused = true"
         @blur="promptFocused = false"
     >
         <template #label>
-            <div>Prompt</div>
+            <div>Запрос</div>
             <el-tooltip content="Add trigger (dreambooth)" placement="top" v-if="store.selectedModelData?.trigger">
                 <el-button v-if="store.selectedModelData.trigger.length === 1" @click="() => store.addDreamboothTrigger()" :icon="Plus" class="trigger-select" />
                 <el-select v-else class="trigger-select" @change="store.addDreamboothTrigger">
@@ -198,10 +198,10 @@ onKeyStroke("Enter", (e) => {
     <DialogList
         v-model="promptLibrary"
         :list="sortedPromptHistory"
-        title="Prompt History"
-        empty-description="No prompt history found - try generating an image!"
-        search-text="Search by prompt"
-        search-empty-description="Found no matching prompt(s) from your search."
+        title="История запросов"
+        empty-description="История пуста! Попробуйте создать картинку"
+        search-text="Поиск по запросу"
+        search-empty-description="Подходящие запросы не найдены."
         @use="prompt => store.prompt = prompt"
         @delete="store.removeFromPromptHistory"
     >
@@ -224,17 +224,17 @@ onKeyStroke("Enter", (e) => {
         v-if="selectStyle"
         v-model="selectStyle"
         :list="Object.keys(store.styles).filter(el => el !== 'raw' && el.includes(searchStyle))"
-        title="Prompt Styles"
-        empty-description="No styles found"
-        search-empty-description="Found no matching style(s) from your search."
-        searchText="Search by style"
-        useText="Use Style"
+        title="Стилевые запросы"
+        empty-description="Стили не найдены"
+        search-empty-description="Подходящие стили не найдены."
+        searchText="Поиск по стилю"
+        useText="Использовать"
         @use="handleUseStyle"
         width="50%"
     >
         <template #options>
             <div>
-                <span style="margin-right: 10px">Show Details</span>
+                <span style="margin-right: 10px">Подробнее</span>
                 <el-switch v-model="showDetails" />
             </div>
         </template>
