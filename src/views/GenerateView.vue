@@ -187,27 +187,27 @@ handleUrlParams();
         >
             <div class="sidebar">
                 <el-collapse v-model="uiStore.activeCollapse" style="margin-bottom: 24px">
-                    <el-collapse-item title="Generation Options" name="1">
+                    <el-collapse-item title="Настройки генерации" name="1">
                         <form-prompt-input />
                         <form-input
-                            label="Negative Prompt"
+                            label="Отрицательный запрос"
                             prop="negativePrompt"
                             v-model="store.negativePrompt"
                             :autosize="{ maxRows: 15 }"
                             resize="vertical"
                             type="textarea"
-                            placeholder="Enter negative prompt here"
-                            info="What to exclude from the image. Not working? Try increasing the guidance."
+                            placeholder="Введите то, что на картинке вы видеть не хотите и/или теги различных проблем изображения"
+                            info="Не работает? Попробуйте повысить следование."
                             label-position="top"
                         >
                             <template #inline>
-                                <el-button class="small-btn" style="margin-top: 2px" @click="() => store.pushToNegativeLibrary(store.negativePrompt)" text>Save preset</el-button>
-                                <el-button class="small-btn" style="margin-top: 2px" @click="() => negativePromptLibrary = true" text>Load preset</el-button>
+                                <el-button class="small-btn" style="margin-top: 2px" @click="() => store.pushToNegativeLibrary(store.negativePrompt)" text>Сохранить шаблон</el-button>
+                                <el-button class="small-btn" style="margin-top: 2px" @click="() => negativePromptLibrary = true" text>Загрузить шаблон</el-button>
                             </template>
                         </form-input>
-                        <form-input label="Seed" prop="seed" v-model="store.params.seed" placeholder="Enter seed here">
+                        <form-input label="Сид" prop="seed" v-model="store.params.seed" placeholder="Введите сид или оставьте пустым для случайного">
                             <template #append>
-                                <el-tooltip content="Randomize!" placement="top">
+                                <el-tooltip content="Создать!" placement="top">
                                     <el-button :icon="MagicStick" @click="() => store.params.seed = Math.abs((Math.random() * 2 ** 32) | 0).toString()" />
                                 </el-tooltip>
                             </template>

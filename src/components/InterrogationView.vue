@@ -72,8 +72,8 @@ const { ellipsis } = useEllipsis();
 <template>
     <el-checkbox-group v-model="store.selectedForms" class="interrogation-form-select">
         <el-checkbox v-for="form in store.possibleForms" :key="form" :label="form">
-            <span>{{ form === "caption" ? " (Описание. Работает всегда)" : "" }}</span>
-            <span class="danger">{{ form === "interrogation" ? " (Теги. Внимание, может не обработаться!)" : "" }}</span>
+            <span>{{ form === "caption" ? " Описание. Работает всегда" : "" }}</span>
+            <span class="danger">{{ form === "interrogation" ? " Теги. Внимание, может не обработаться!" : "" }}</span>
         </el-checkbox>
     </el-checkbox-group>
     <div v-if="!store.currentInterrogation.source_image" style="margin-top: 16px;">
