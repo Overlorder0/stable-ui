@@ -259,7 +259,7 @@ handleUrlParams();
                                 <form-switch label="Мульти-модель"        prop="multiModelSwitch"    v-model="store.multiSelect.model.enabled" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Мульти-сэмплер"      prop="multiSamplerSwitch"  v-model="store.multiSelect.sampler.enabled" info="Note: Stable Diffusion 2.0 forces the 'dpmsolver' sampler." />
+                                <form-switch label="Мульти-сэмплер"      prop="multiSamplerSwitch"  v-model="store.multiSelect.sampler.enabled" info="Заметка: Stable Diffusion 2.0 требует сэмплер 'dpmsolver'." />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
                                 <form-switch label="Мульти-следование"     prop="multiGuidanceSwitch" v-model="store.multiSelect.guidance.enabled" />
@@ -277,7 +277,7 @@ handleUrlParams();
                                 <form-switch label="Мульти-Hi-res фикс"   prop="multiHiResFix"       v-model="store.multiSelect.hiResFix.enabled" />
                             </el-col>
                             <el-col :span="isMobile ? 24 : 12">
-                                <form-switch label="Мульти-контроль" prop="multiControl"      v-model="store.multiSelect.controlType.enabled" :disabled="!store.sourceGeneratorTypes.includes(store.generatorType)"  disabled-text="Requires a drawing/uploaded image" />
+                                <form-switch label="Мульти-контроль" prop="multiControl"      v-model="store.multiSelect.controlType.enabled" :disabled="!store.sourceGeneratorTypes.includes(store.generatorType)"  disabled-text="Требуется набросок/образец" />
                             </el-col>
                         </el-row>
                     </el-collapse-item>
