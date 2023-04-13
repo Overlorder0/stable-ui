@@ -148,11 +148,11 @@ handleUrlParams();
         <GeneratorMenuItem index="Text2Img"      :icon-one="Comment"           :icon-two="PictureFilled" :isMobile="isMobile" />
         <GeneratorMenuItem index="Img2Img"       :icon-one="PictureFilled"     :icon-two="PictureFilled" :isMobile="isMobile" />
         <GeneratorMenuItem index="Inpainting"    :icon-one="BrushFilled"       :icon-two="PictureFilled" :isMobile="isMobile" />
-        <GeneratorMenuItem index="Оценка"        :icon-one="StarEdit24Regular" :isMobile="isMobile" />
+        <GeneratorMenuItem index="Rating"        :icon-one="StarEdit24Regular" :isMobile="isMobile" />
         <GeneratorMenuItem index="Interrogation" :icon-one="ImageSearch"       :isMobile="isMobile" />
     </el-menu>
     <div class="form">
-        <div v-if="store.generatorType === 'Оценка'" style="padding-bottom: 50px;">
+        <div v-if="store.generatorType === 'Rating'" style="padding-bottom: 50px;">
             <h1 style="margin: 0">Оценка изображений</h1>
             <div>Оценивайте картинки на основе своих предпочтений, чтобы получать очки и помочь <BaseLink href="https://laion.ai/">LAION</BaseLink>, некоммерческой организации, помогавшей в обучении Stable Diffusion!</div>
             <div v-if="optionsStore.apiKey === '0000000000' || optionsStore.apiKey === ''">Вы оценили <strong>{{ ratingStore.imagesRated }}</strong> картинок! <BaseLink router href="/options">Войдите</BaseLink> используя свой API ключ, чтобы получать очки.</div>
