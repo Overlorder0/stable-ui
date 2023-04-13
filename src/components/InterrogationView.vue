@@ -49,8 +49,8 @@ function useInterrogation() {
     } as any);
 }
 
-const captionForm = computed(() => store.getFormStatus('описание'));
-const interrogationForm = computed(() => store.getFormStatus('теги'));
+const captionForm = computed(() => store.getFormStatus('caption'));
+const interrogationForm = computed(() => store.getFormStatus('interrogation'));
 
 const showWarning = computed(() =>
     !store.currentInterrogation?.status?.forms?.every(el => el.state === 'done') &&
