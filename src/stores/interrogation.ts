@@ -14,7 +14,7 @@ export interface InterrogationInfo {
     status?: InterrogationStatus;
     id?: string;
     source_image?: string;
-    forms_selected?: ("caption" | "interrogation")[];
+    forms_selected?: ("описание" | "теги")[];
     elapsed_seconds?: number;
 }
 
@@ -25,8 +25,8 @@ interface FormResult {
 export const useInterrogationStore = defineStore("interrogate", () => {
     const currentInterrogation = ref<InterrogationInfo>({});
     const interrogating = ref(false);
-    const possibleForms: ("caption" | "interrogation")[] = ["caption", "interrogation"];
-    const selectedForms = ref<typeof possibleForms>(["caption"]);
+    const possibleForms: ("описание" | "теги")[] = ["описание", "теги"];
+    const selectedForms = ref<typeof possibleForms>(["описание"]);
 
     async function onError(msg: string) {
         const uiStore = useUIStore();
