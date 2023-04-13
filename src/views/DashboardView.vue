@@ -63,7 +63,7 @@ const signedIn = computed(() => optionsStore.apiKey != '0000000000' && optionsSt
                         gap: breakLabels ? '8px' : '1rem',
                     }"
                 >
-                    <data-label style="width: 100%" :icon="Money"   label="Поощрения"           :content="dashStore.user.kudos"                        color="var(--el-color-success)" />
+                    <data-label style="width: 100%" :icon="Money"   label="Очки"           :content="dashStore.user.kudos"                        color="var(--el-color-success)" />
                     <data-label style="width: 100%" :icon="Picture" label="Изображений запрошено" :content="dashStore.user.records?.request?.image"     color="var(--el-color-danger)"  />
                     <data-label style="width: 100%" :icon="Aim"     label="Изображений исполнено" :content="dashStore.user.records?.fulfillment?.image" color="var(--el-color-primary)" />
                     <data-label style="width: 100%" :icon="Avatar"  label="Всего работников"   :content="dashStore.user.worker_count"                 color="var(--el-color-warning)" />
