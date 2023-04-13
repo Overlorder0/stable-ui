@@ -12,7 +12,7 @@ const store = useGeneratorStore();
 
 <template>
     <form-select
-        label="Model(s)"
+        label="Модель(ли)"
         prop="models"
         v-model="store.multiSelect.model.selected"
         :options="store.filteredAvailableModels"
@@ -22,12 +22,12 @@ const store = useGeneratorStore();
         v-if="store.multiSelect.model.enabled"
         class="multi-model-select"
     />
-    <form-select label="Model" prop="model"  v-model="store.selectedModel" :options="store.filteredAvailableModels" filterable v-else>
+    <form-select label="Модель" prop="model"  v-model="store.selectedModel" :options="store.filteredAvailableModels" filterable v-else>
         <template #label>
             <div style="display: flex; align-items: center; width: 100%">
-                <div style="margin-right: 5px">Model</div>
+                <div style="margin-right: 5px">Модель</div>
                 <InfoTooltip>
-                    <div>Model Description: {{store.modelDescription}}</div>
+                    <div>Описание модели: {{store.modelDescription}}</div>
                     <el-carousel
                         v-if="store.selectedModelData?.showcases"
                         style="margin-top: 10px"
