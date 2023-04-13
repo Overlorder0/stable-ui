@@ -106,7 +106,7 @@ const splitList = computed(() => {
         <div class="options">
             <el-popover
                 placement="bottom"
-                title="Sort By"
+                title="Отсортировать"
                 trigger="click"
                 :width="200"
                 transition="none"
@@ -116,7 +116,7 @@ const splitList = computed(() => {
                     <el-button class="btn-select"><el-icon :size="16"><Sort /></el-icon></el-button>
                 </template>
                 <div
-                    v-for="option in ['Newest', 'Oldest']"
+                    v-for="option in ['Новые', 'Старые']"
                     :key="option"
                     @click="() => store.sortBy = (option as any)"
                     :class="`el-select-dropdown__item ${store.sortBy === option ? 'selected' : ''}`"
@@ -124,7 +124,7 @@ const splitList = computed(() => {
             </el-popover>
             <el-popover
                 placement="bottom"
-                title="Filter By"
+                title="Фильтр"
                 trigger="click"
                 :width="240"
                 transition="none"
@@ -134,7 +134,7 @@ const splitList = computed(() => {
                     <el-button class="btn-select"><el-icon :size="16"><Filter /></el-icon></el-button>
                 </template>
                 <div
-                    v-for="option in ['all', 'favourited', 'unfavourited', 'unrated']"
+                    v-for="option in ['все', 'избранное', 'нежелательное', 'неоценённые']"
                     :key="option"
                     @click="() => store.filterBy = (option as any)"
                     :class="`el-select-dropdown__item ${store.filterBy === option ? 'selected' : ''}`"
