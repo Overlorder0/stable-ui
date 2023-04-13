@@ -35,11 +35,19 @@ const status = computed(() => {
 
 const imageRef = ref(null);
 const shouldRender = ref(false);
+useIntersectionObserver(
+    imageRef,
+    ([{ isIntersecting }]) => {
+        shouldRender.value = isIntersecting;
+    }, {
+        rootMargin: '500px',
+    }
+);
 </script>
 
 <template>
     <el-card class="model-box" :body-style="{ padding: '0px' }" ref="imageRef">
-        <div v-if="shouldRender">
+        <div v-if="shouldRender || props.model.nsfw != true">
             <el-carousel
                 style="width: 100%; margin: 0"
                 :autoplay="false"
