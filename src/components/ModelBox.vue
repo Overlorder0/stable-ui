@@ -46,8 +46,8 @@ useIntersectionObserver(
 </script>
 
 <template>
-    <el-card class="model-box" :body-style="{ padding: '0px' }" ref="imageRef">
-        <div v-if="shouldRender || props.model.nsfw != true">
+    <el-card v-if="model.nsfw != true" class="model-box" :body-style="{ padding: '0px' }" ref="imageRef">
+        <div v-if="shouldRender>
             <el-carousel
                 style="width: 100%; margin: 0"
                 :autoplay="false"
