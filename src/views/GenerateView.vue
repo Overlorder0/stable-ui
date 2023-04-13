@@ -147,9 +147,9 @@ handleUrlParams();
     >
         <GeneratorMenuItem index="Text2Img"      :icon-one="Comment"           :icon-two="PictureFilled" :isMobile="isMobile" />
         <GeneratorMenuItem index="Img2Img"       :icon-one="PictureFilled"     :icon-two="PictureFilled" :isMobile="isMobile" />
-        <GeneratorMenuItem index="Редактор"    :icon-one="BrushFilled"       :icon-two="PictureFilled" :isMobile="isMobile" />
-        <GeneratorMenuItem index="Оценка"        :icon-one="StarEdit24Regular" :isMobile="isMobile" />
-        <GeneratorMenuItem index="Обработчик" :icon-one="ImageSearch"       :isMobile="isMobile" />
+        <GeneratorMenuItem index="Inpainting"    :icon-one="BrushFilled"       :icon-two="PictureFilled" :isMobile="isMobile" />
+        <GeneratorMenuItem index="Rating"        :icon-one="StarEdit24Regular" :isMobile="isMobile" />
+        <GeneratorMenuItem index="Interrogation" :icon-one="ImageSearch"       :isMobile="isMobile" />
     </el-menu>
     <div class="form">
         <div v-if="store.generatorType === 'Rating'" style="padding-bottom: 50px;">
