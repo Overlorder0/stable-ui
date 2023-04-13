@@ -284,7 +284,7 @@ handleUrlParams();
                 </el-collapse>
             </div>
             <div class="main">
-                <el-button @click="() => store.resetStore()" class="reset-btn">Reset</el-button>
+                <el-button @click="() => store.resetStore()" class="reset-btn">Сброс</el-button>
                 <el-button
                     v-if="!store.generating"
                     type="primary"
@@ -292,12 +292,12 @@ handleUrlParams();
                     @click="() => store.generateImage(store.generatorType)"
                 >
                     <span>
-                        Generate {{ store.totalImageCount }} image{{ store.totalImageCount === 1 ? "" : "s" }}
+                        Создать {{ store.totalImageCount }} изображение(я){{ store.totalImageCount === 1 ? "" : "s" }}
                         <span v-if="store.totalImageCount > 3 && store.createVideo">
-                            + {{ Math.round(store.totalImageCount / videoStore.initFramerate * 100) / 100 }}s video
+                            + {{ Math.round(store.totalImageCount / videoStore.initFramerate * 100) / 100 }}с видео
                         </span>
                         <span v-if="optionsStore.apiKey !== '0000000000' && optionsStore.apiKey !== ''">
-                            ({{ optionsStore.allowLargerParams === 'Enabled' ? store.canGenerate ? '✅ ' : '❌ ' : '' }}{{ store.kudosCost.toFixed(2) }} kudos{{ store.canGenerate ? '' : ' required' }})
+                            ({{ optionsStore.allowLargerParams === 'Enabled' ? store.canGenerate ? '✅ ' : '❌ ' : '' }}{{ store.kudosCost.toFixed(2) }} очков{{ store.canGenerate ? '' : ' required' }})
                         </span>
                     </span>
                 </el-button>
