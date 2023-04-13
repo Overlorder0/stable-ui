@@ -29,7 +29,7 @@ export const useTagsStore = defineStore("tags", () => {
     const tagsLoading = ref(false);
     const tagsTypes = ref<TagTypes>({
         none: {
-            type: "none",
+            type: "Выбрать",
             tags: [],
         },
         danbooru: {
