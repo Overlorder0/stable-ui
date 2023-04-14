@@ -71,7 +71,11 @@ watch(
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/workers">
                 <template #icon><el-icon><user /></el-icon></template>
-                <template #title>Работники</template>
+                <template #title>Работники и модели</template>
+            </MainMenuItem>
+            <MainMenuItem :isMobile="isMobile" index="/about">
+                <template #icon><el-icon><user /></el-icon></template>
+                <template #title>Помощь</template>
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/options">
                 <template #icon><el-icon><options /></el-icon></template>

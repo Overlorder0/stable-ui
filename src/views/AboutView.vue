@@ -5,25 +5,26 @@ import BaseLink from '@/components/BaseLink.vue';
 <template>
   <div class="about">
     <div class="about-content">
-        <h1 style="margin-top: 0">Stable UI</h1>
-        <div>угабугаугабугаугабугаугабугаугабугаугабугаon images without needing any special hardware. While Stable UI was originally created as a way to explore web APIs and <BaseLink href="https://vuejs.org/">Vue</BaseLink>, it has since evolved into a tool that allows users to easily access Stable Diffusion to create fascinating images!</div><br>
-        <div>If you want to help improve this tool, you can find the source code on <BaseLink href="https://github.com/aqualxx/stable-ui">GitHub</BaseLink>. Feel free to contribute! Message me on Discord (aqualxx#5004) or through the <BaseLink href="https://discord.com/channels/781145214752129095/1033312325668708393">Stable-UI Suggestions</BaseLink> thread if you have any problems or questions. If you're feeling quite generous, I'd really appreciate it if you were to <BaseLink href="https://ko-fi.com/aqualxx">buy me a coffee</BaseLink>! Generate some images and enjoy using this tool.</div>
-        <div class="faq">
-            <h2>FAQ</h2>
-            <h3>What is Stable Horde?</h3>
-            <span>Stable Horde is an open source project that allows anyone to use Stable Diffusion - for free! For those who want the specifics, it's powered by a <BaseLink href="https://github.com/db0/AI-Horde">crowdsourced distributed cluster</BaseLink> of <BaseLink href="https://github.com/Sygil-Dev/nataili">Stable Diffusion workers</BaseLink>. Consider <BaseLink href="https://github.com/db0/AI-Horde/blob/main/README_StableHorde.md">joining the horde yourself</BaseLink>! You can join the Stable Horde <BaseLink href="https://discord.gg/3DxrhksKzn">discord server</BaseLink> or support its development on <BaseLink href="https://www.patreon.com/db0">Patreon</BaseLink> or <BaseLink href="https://github.com/db0">Github</BaseLink>.</span>
-            <h3>How do I increase my generation speed?</h3>
-            <span>If you want prioritized generations, you may <BaseLink href="https://stablehorde.net/register">register</BaseLink> an account. This will give an API key that can be used to generate images on this site or others. Make sure to never share this key! Anonymous/non-registered users have the lowest priority in the queue, resulting in slower generation times. Your API key is set to connect anonymously by default; you can change this behaviour through the settings tab. To increase your priority futher, try increasing your Kudos by setting up a worker or by contributing and being gifted by the kind fellows in the discord server.</span>
-            <h3>Why has my IP address been put in timeout?</h3>
-            <span>This error occurs when your prompt has been flagged as unethical - it's to protect the Horde from the worst of the worst. To fix this error, try changing or removing words from your prompt that could be deemed as such.</span>
-        </div>
-        <h2>Helpful Resources</h2>
+        <h2 style="margin-top: 0">Частые вопросы</h2>
+        <h3>Как мне зарегистрироваться?</h3>
+        <div>Регистрация в нашем сервисе проходит на <BaseLink href="https://stablehorde.net/register">Сайте</BaseLink> . После регистрации вам будет предоставлен API ключ. Не потеряйте его! Это ваша альфа и омега, логин и пароль, восстановить его мы не сможем.</div><br>
+        <div>И не забудьте ввести полученный вами ключ в разделе настроек!</div>
+        <h3>Мне нужны какие-то очки для создания картинок. Где их получать?</h3>
+        <div>Очки в нашем сервисе служат подтверждением вашего вклада в производительность сервиса. Есть 3 способа получать очки:</div><br>
         <ul>
-            <li><BaseLink href="https://lexica.art/">Lexica.art</BaseLink> - A prompt search engine</li>
-            <li><BaseLink href="https://publicprompts.art/">Public Prompts</BaseLink> - A collection of prompts for creating unique styles</li>
-            <li><BaseLink href="https://openart.ai/promptbook">Promptbook</BaseLink> - A generalized prompting guide</li>
-            <li><BaseLink href="https://promptomania.com/stable-diffusion-prompt-builder/">Prompt Mania</BaseLink> - A Stable Diffusion prompt builder</li>
+            <li>Установить клиент-работник на свой ПК. <BaseLink href="https://github.com/db0/AI-Horde-Worker#readme">Ссылка с инструкцией</BaseLink></li>
+            <li>Запустить облачный клиент на Google Colab. Это не будет использовать мощности вашего устройства и позволяет вам бесплатно стать частью сети на 3 часа в сутки. Просто заполните все поля блокнота и последовательно запустите ячейки. <BaseLink href="https://colab.research.google.com/github/db0/Simple-AI-Horde-Colab/blob/main/The_Simple_Stable_Horde_Colab.ipynb">Ссылка на блокнот</BaseLink></li>
+            <li>Оценивайте изображения во вкладке Rating. Это самый простой, но при этом и самый неприбыльный способ. Перейдите во вкладку генератора и найдите иконку со звездочкой. Будте внимательны! Во вкладке действует защита от накруток в виде периодических Capthca картинок. Вы сразу сможете их отличить по читаемому тексту и большой цифре, просто выставляйте запрошенную на картинке оценку.</li>
         </ul>
+        <div>Наш сервис не предоставляет никаких платных услуг! Вы не можете получить очки иными способами, кроме выполнения действий приведённых выше.</div><br>
+        <h3>Мои картинки получаются какими-то очень несуразными. Как мне улучшить качество изображений?</h3>
+        <ul>
+            <li>Во-первых, чем больше и чётче запрос-тем лучше результат. Вместо того, чтобы просить изобразить вам "cat in a field", например, попробуйте подробнее описать кота, время суток, в поле чего он находится, уровень качества изображения, стиль и так далее чтобы получилось что-то вроде "a multi-coloured cat with blue eyes sitting on a small rock in a wheat field, noon time, outdoors, wheat field, oil painting, masterpeice, stylized clouds". Также не забудьте про отрицательный запрос! Это поможет вам искоренять различные получаемые огрехи с каждой новой картинкой.</li>
+            <li>Во-вторых, попробуйте поменять сэмплер и число шагов. Чем больше шагов, тем, очевидно, лучше качество. Разные сэмплеры работают по разному, но из практики euler_a-самый быстрый и креативный, а семейство dpm и сэмплер ddim-дают более проработанные результаты за счёт времени работы.</li>
+            <li>В третьих, разрешение. Если вы хотите изобразить персонажа в вертикально положении - поменяйте разрешение изображения так, чтобы по вертикали оно было длиннее, и наоборот, если вы хотите лежачего персонажа, то сделайте и изображение шире, чем оно выше.</li>>
+            <li>И последнее, но далеко не по важности - подбирайте модели. Разные модели могут справляться с разными задачами лучше остальных. Зайдите во вкладку работники и модели, чтобы посмотреть какая на что способна, или наведите на значок справки в меню генератора.</li>>
+        </ul>>
+        <div>Если вам необходимы более наглядные примеры, пожалуйста посетите <BaseLink href="https://lexica.art/">LexicaArt</BaseLink> - крупнейший хостинг для ИИ изображений, где вы также можете посмотреть какой запрос использовался автором. Также вам может помочь <BaseLink href="https://publicprompts.art/">PublicPrompts</BaseLink> - сайт-коллекция различных типов запросов под разные стили!</div>
     </div>
   </div>
 </template>
