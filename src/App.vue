@@ -49,7 +49,7 @@ watch(
         >
             <el-menu-item class="remove-item-styling center-vertical" v-if="!isMobile">
                 <template #title>
-                    <div style="font-size: 20px;">Stable Horde</div>
+                    <div style="font-size: 20px;">ruStableAIUI</div>
                 </template>
             </el-menu-item>
             <MainMenuItem :isMobile="isMobile" index="/dashboard">
@@ -74,7 +74,7 @@ watch(
                 <template #title>Работники и модели</template>
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/about">
-                <template #icon><el-icon><user /></el-icon></template>
+                <template #icon><el-icon><question-sign /></el-icon></template>
                 <template #title>Помощь</template>
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/options">
