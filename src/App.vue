@@ -74,7 +74,7 @@ watch(
                 <template #title>Работники и модели</template>
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/about">
-                <template #icon><el-icon><question /></el-icon></template>
+                <template #icon><el-icon><document /></el-icon></template>
                 <template #title>Помощь</template>
             </MainMenuItem>
             <MainMenuItem :isMobile="isMobile" index="/options">
