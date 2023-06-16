@@ -284,7 +284,7 @@ handleUrlParams();
                 </el-collapse>
             </div>
             <div class="main">
-                <el-button @click="() => store.resetStore()" class="reset-btn">Сброс</el-button>
+                <el-button @click="() => store.resetStore()" class="reset-btn">Сброс настроек</el-button>
                 <el-button
                     v-if="!store.generating"
                     type="primary"
@@ -310,7 +310,7 @@ handleUrlParams();
                         store.cancelled = true;
                         videoStore.cancelGeneration();
                     }"
-                >Cancel</el-button>
+                >Отмена</el-button>
             </div>
             <div class="image center-horizontal">
                 <el-card
