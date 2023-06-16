@@ -3,7 +3,7 @@ import { useColorMode, useLocalStorage, type BasicColorSchema } from '@vueuse/co
 import { ref, computed } from 'vue';
 import { BASE_URL_STABLE } from "@/constants";
 
-type IToggle = "Вкл" | "Выкл";
+type IToggle = "Enabled" | "Disabled";
 
 export const useOptionsStore = defineStore("options", () => {
     const options = useLocalStorage("options", ref({
@@ -12,11 +12,11 @@ export const useOptionsStore = defineStore("options", () => {
         })
     }));
     const pageSize = useLocalStorage("pageSize", 25);
-    const pageless = useLocalStorage<IToggle>("pageless", "Выкл");
-    const allowLargerParams = useLocalStorage<IToggle>("allowLargerParams", "Выкл");
-    const shareWithLaion = useLocalStorage<IToggle>("shareWithLaion", "Выкл");
-    const autoCarousel = useLocalStorage<IToggle>("autoCarousel", "Вкл");
-    const useBeta = useLocalStorage<IToggle>("useBeta", "Выкл");
+    const pageless = useLocalStorage<IToggle>("pageless", "Disabled");
+    const allowLargerParams = useLocalStorage<IToggle>("allowLargerParams", "Disabled");
+    const shareWithLaion = useLocalStorage<IToggle>("shareWithLaion", "Disabled");
+    const autoCarousel = useLocalStorage<IToggle>("autoCarousel", "Enabled");
+    const useBeta = useLocalStorage<IToggle>("useBeta", "Disabled");
     const imageDownloadType = useLocalStorage<"WEBP" | "PNG" | "JPG">("imageDownloadType", "WEBP")
     //const baseURL = computed(() => useBeta.value === "Enabled" ? BASE_URL_DEV : BASE_URL_STABLE);
     const baseURL = computed(() => BASE_URL_STABLE);
